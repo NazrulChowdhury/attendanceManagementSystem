@@ -1,24 +1,16 @@
 import {useContext, createContext, useReducer} from 'react'
+import userReducer from './reducers/userReducer'
+import { userObject } from './initialStates/userObject'
 
 const GlobalContext = createContext()
 export const useGlobalContext = () => useContext(GlobalContext)
 
 const GlobalContextProvider = (props) => {
-    const myReducer = (state,action) => {
-        switch (action.type) {
-            case 'test':
-                return {result : 'working'}               
-                break;
-        
-            default:
-                break;
-        }
-    }
     // all reducers... 
-    const [result, dispatch] = useReducer(myReducer,{})
+    const [userState,userDispatch] = useReducer(userReducer,userObject)
 
     const value = {
-        result, dispatch
+        userState,userDispatch
     }
     return(
         <GlobalContext.Provider value ={value}>

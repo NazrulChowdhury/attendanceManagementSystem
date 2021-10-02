@@ -1,15 +1,13 @@
 import { useEffect } from 'react';
+import Login from './components/Login';
 import {useGlobalContext} from './context/context'
 function App() {
-  const {result, dispatch} = useGlobalContext()
-useEffect(() => {
-  dispatch({type : 'test'})
-},[])
-  console.log(result)
+  const {userState,userDispatch} = useGlobalContext()
+  console.log(userState)
   
   return (
     <div >
-      working!
+      <Login />
     </div>
   );
 }
