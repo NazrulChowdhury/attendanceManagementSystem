@@ -23,8 +23,8 @@ const createSocialUser = async(user)=>{
 }
 
 const createInviteEmail = async(InviteEmail) => {
-    await new inviteEmail({
-        email : InviteEmail
+    return await new inviteEmail({
+        email : InviteEmail 
     }).save()
 }
 const userEmailExist = async(userEmail)=>{

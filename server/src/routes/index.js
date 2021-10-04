@@ -3,6 +3,7 @@ const router = require('express').Router()
 
 
 router.get('/', require('../controllers/auth.Controller'))
+router.post('/addUser')
 router.use('/auth', require('./auth.route'))
 
 module.exports = router
