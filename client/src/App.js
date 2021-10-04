@@ -1,19 +1,17 @@
-import Login from './components/Login';
+import Home from './components/Home'
+import Login from './components/Login'
 import {useGlobalContext} from './context/context'
 
 function App() {
   const {user} = useGlobalContext()
-  console.log('user', user)
+
   return (
     <div>
-      <div >
-        {!user && <Login />}
-      </div>
-      <div>
-      </div>
-    </div>
+      {!user && <Login />}
+      {user && <Home />}
 
-  );
+    </div>
+  )
 }
 
 export default App;

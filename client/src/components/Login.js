@@ -10,7 +10,7 @@ const Login = (params) => {
         <div className ="login_form_wrapper">
             <div className="container">
                 <div>
-                    Welcome! Please Sign in..
+                   Please Sign in..
                 </div>
                 <Button onClick = {loginHandler}>Log in with google</Button>
             </div>
