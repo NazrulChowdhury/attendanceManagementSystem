@@ -9,7 +9,7 @@ class ApiError {
         return new ApiError(code, message, fields)
     }
 
-    static internalError(){
+    static internal(){
         return new ApiError('500', 'opps! something went wrong!')
     }
 }
