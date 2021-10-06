@@ -1,16 +1,10 @@
 const userReducer= (state,action) => {
   switch (action.type) {
       case 'SUCCESS':
-          return {
-            isLoggedIn : true,
-            user : action.payload
-          }
+          return { isLoggedIn : action.payload}
           break;
         case 'FAILED':
-            return {
-                isLoggedIn : false,
-                user : {}
-            }
+            return {isLoggedIn : action.payload}
             break;  
       default:
           return state

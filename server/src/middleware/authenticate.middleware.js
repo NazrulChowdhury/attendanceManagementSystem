@@ -1,6 +1,6 @@
+const ApiError = require("../helper/error")
+
 const authenticate = (req,res,next)=>{
-    const customError = new Error('you are not logged in');
-    customError.statusCode = 401;
-    (!req.user) ? next(customError) : next()
+    (!req.user) ? next(ApiError.badRequest(401, 'you are not logged in!')) : next()
 }
 module.exports = authenticate

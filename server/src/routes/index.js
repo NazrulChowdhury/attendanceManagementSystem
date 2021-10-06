@@ -3,7 +3,7 @@ const router = require('express').Router()
 const errorHandler = require('../middleware/error.middleware')
 
 
-router.get('/', require('../controllers/auth.Controller'))
+router.get('/', (req, res) => res.send('wellcome'))
 router.post('/addUser')
 router.use('/auth', require('./auth.route'))
 router.use(errorHandler)

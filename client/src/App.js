@@ -1,15 +1,17 @@
+
 import Home from './components/Home'
 import Login from './components/Login'
+import Logout from './components/Logout'
 import {useGlobalContext} from './context/context'
 
 function App() {
-  const {user} = useGlobalContext()
+  const {isLoggedIn} = useGlobalContext()
+  if(!isLoggedIn) return <Login />
 
   return (
     <div>
-      {!user && <Login />}
-      {user && <Home />}
-
+      {isLoggedIn && <Logout />}
+      <Home />
     </div>
   )
 }

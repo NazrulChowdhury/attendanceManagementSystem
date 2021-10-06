@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const passport = require('passport')
-const authenticate = require('../middleware/authenticate.middleware')
+//const authenticate = require('../middleware/authenticate.middleware')
+const authController = require('../controllers/auth.Controller')
 
 //google auth routes
 router.get(
@@ -10,15 +11,12 @@ router.get(
 router.get(
     '/google/redirect', 
     passport.authenticate('google',{
-        successRedirect: "http://localhost:3000"
+        successRedirect: process.env.CLIENT_BASE_URL
        })
 )
-router.get('/getUser',authenticate, (req, res)=> res.send(req.user))
-// router.get(
-//     '/google/redirect', 
-//     passport.authenticate('google'),
-//     (req,res) => res.send(req.user)
-// )
+router.get('/logout', authController.logout)
+router.get('/getUserStatus', (req, res)=> req.user ? res.send(true) : res.send(false) )
+
 
 
 module.exports = router
