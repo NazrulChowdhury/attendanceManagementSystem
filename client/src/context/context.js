@@ -1,4 +1,5 @@
 import {useContext, createContext, useReducer, useState, useEffect} from 'react'
+import { server } from '../config/server'
 import userReducer from './reducers/userReducer'
 import GetUserStatus from './stateHooks/GetUserStatus'
 
@@ -7,7 +8,7 @@ export const useGlobalContext = () => useContext(GlobalContext)
 
 const GlobalContextProvider = (props) => {
 
-    const {isLoggedIn , setIsLoggedIn} = GetUserStatus('http://localhost:8080/auth/getUserStatus')
+    const {isLoggedIn , setIsLoggedIn} = GetUserStatus(`${server.baseUrl}/auth/getUserStatus`)
 
     // all reducers... 
     const [userState,userDispatch] = useReducer(userReducer,{})
