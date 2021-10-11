@@ -1,16 +1,18 @@
 import axios from "axios"
 import Button from "react-bootstrap/Button"
+import { useQuery } from "react-query"
 import { server } from "../config/server"
 import { useGlobalContext } from "../context/context"
 
 const Logout = ()=>{
     const {isLoggedIn, setIsLoggedIn} = useGlobalContext()
-    const logOutHandler = () => {
-        axios.get(`${server.baseUrl}/auth/logout`)
-        .then(response => setIsLoggedIn(response.data))
-    }
+    const logOutHandler = async() => await axios(`${server.baseUrl}/auth/logout`, {withCredentials : true})
+    const {isLoding, error, data, refetch} = useQuery('logout', logOutHandler,{
+        onSuccess : (data) => setIsLoggedIn(data.data),
+        enabled : false
+    })
     return(
-        <Button onClick = {() => {logOutHandler()}}>
+        <Button onClick = {() => {refetch()}}>
             Log Out
         </Button>
     )
