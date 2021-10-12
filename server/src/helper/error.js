@@ -1,4 +1,4 @@
-class ApiError {
+module.exports = class ApiError {
     constructor(code, message, fields){
         this.code = code
         this.message = message
@@ -13,4 +13,4 @@ class ApiError {
         return new ApiError('500', 'opps! something went wrong!')
     }
 }
-module.exports = ApiError
+ 
