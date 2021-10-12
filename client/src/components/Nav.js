@@ -5,6 +5,7 @@ import Login from "./Login";
 import { useHistory } from "react-router-dom";
 import { useGlobalContext } from "../context/context";
 import Logout from "./Logout";
+import AddUser from "./AddUser";
 
 const Nav = () => {
     const history = useHistory()
@@ -12,11 +13,13 @@ const Nav = () => {
     return(
         <div>
             <Button onClick = {() => history.push('/')}> Home </Button>
+            <Button onClick = {() => history.push('/addUser')}> Add User </Button>
             {!isLoggedIn && <Button onClick = {() => history.push('/login')}> Login </Button>}
             {isLoggedIn && <Logout />}
             <Switch>
                 <Route exact path ="/">  <Home /> </Route>
                 <Route path = '/login'> <Login /> </Route>
+                <Route path = '/addUser'> <AddUser /> </Route>
             </Switch>
         </div>
     )

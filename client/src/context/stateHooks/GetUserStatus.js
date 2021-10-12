@@ -5,9 +5,7 @@ const GetUserStatus = (url) => {
     const [isLoggedIn, setIsLoggedIn] = useState()
     useEffect(() => {
         axios.get(url,{withCredentials : true})
-        .then(response => { console.log('getUserStatus response', response)
-            response.data && setIsLoggedIn(response.data) }
-            )
+        .then(response => response.data && setIsLoggedIn(response.data))
         .catch(error => {})
     })
     return {isLoggedIn ,setIsLoggedIn}
