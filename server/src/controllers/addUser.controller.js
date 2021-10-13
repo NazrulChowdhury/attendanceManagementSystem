@@ -1,15 +1,16 @@
-import ApiError from '../helper/error'
-import {createInviteEmail, userEmailExist} from '../services/user.services'
+const ApiError = require( '../helper/error')
+const {createInviteEmail, userEmailExist} = require('../services/user.services')
 
-const addUser = async(req, res, next) => {
+const addUser = async(req, res, next) => { 
     const email = req.body.email
     try{
         const emailExists = await userEmailExist(email)
         if(emailExists) {
-           return Promise.reject(ApiError.badRequest(409,'user email already exists!'))
+           next(ApiError.badRequest(409,'user email already exists!'))
+           return
         }
-        const email = await createInviteEmail(email)
-        email ? res.send('done!') : Promise.reject()
+        const inviteEmail = await createInviteEmail(email)
+        inviteEmail ? res.send('done!') : next(ApiError.internal())
         next()
     } catch(err){
         next(err)
@@ -18,7 +19,4 @@ const addUser = async(req, res, next) => {
 }
 module.exports = addUser
 
-// email already exists.
-// wrong format email..
-// blank email..
-// new invite doesn't get created.
+

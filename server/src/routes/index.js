@@ -4,7 +4,7 @@ const errorHandler = require('../middleware/error.middleware')
 
 
 
-router.get('/', (req, res) => res.send('wellcome'))
+router.get('/', (req, res, next) => { res.send('welcome!')})
 router.use('/auth', require('./auth.route'))
 router.post('/addUser', require('../controllers/addUser.controller'))
 router.use(errorHandler)
