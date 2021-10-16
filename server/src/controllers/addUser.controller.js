@@ -1,10 +1,10 @@
 const ApiError = require( '../helper/error')
-const {createInviteEmail, userEmailExist} = require('../services/user.services')
+const {createInviteEmail, inviteEmailExist} = require('../services/user.services')
 
 const addUser = async(req, res, next) => { 
     const email = req.body.email
     try{
-        const emailExists = await userEmailExist(email)
+        const emailExists = await inviteEmailExist(email)
         if(emailExists) {
            next(ApiError.badRequest(409,'user email already exists!'))
            return

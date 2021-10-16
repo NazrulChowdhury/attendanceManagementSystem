@@ -27,11 +27,16 @@ const createInviteEmail = async(InviteEmail) => {
         email : InviteEmail 
     }).save()
 }
-const userEmailExist = async(userEmail)=>{
- return await inviteEmail.findOne({'email':userEmail})
+const inviteEmailExist = async(email)=>{
+ return await inviteEmail.findOne({'email': email})
 
 }
-
-module.exports = {getSocialUserById,createSocialUser,createInviteEmail,userEmailExist}
+const clearInvite = async(email) =>{
+    return await inviteEmail.deleteOne({'email':email})
+}
+module.exports = {
+    getSocialUserById,createSocialUser,createInviteEmail,
+    inviteEmailExist, clearInvite
+}
 
 

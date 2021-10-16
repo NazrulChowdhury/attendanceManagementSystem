@@ -1,6 +1,7 @@
 const passport = require('passport')
 const GoogleStrategy = require('passport-google-oauth20')
-const {getSocialUserById, createSocialUser} = require('../services/user.services')
+const AuthError = require('../helper/auth.error')
+const {getSocialUserById, createSocialUser, inviteEmailExist, clearInvite} = require('../services/user.services')
 require('dotenv').config()
 
 passport.serializeUser((user, done)=> done(null, user.id))
@@ -14,16 +15,23 @@ passport.use(new GoogleStrategy({
     callbackURL: '/auth/google/redirect'
   }, 
   async(request, accessToken, refreshToken, profile, done)=>{
-    // check if the user already exist
+    const email = profile._json.email
     try{
       const existingUser = await getSocialUserById('google',profile.id)
-      if(existingUser){ 
+      if(existingUser){
         done(null,existingUser)
         return
-      } 
-    // create new user if doesn't already exist
+      }
+
+     const isInvited = await inviteEmailExist(email)
+     if(!isInvited){
+      done(AuthError.badRequest(409,'user need to be added first!'))
+      return
+     }
       const newUser = await createSocialUser(profile._json)
+      await clearInvite(email)
       done(null,newUser)
+
     } catch(err){
       console.log(err)
     }
