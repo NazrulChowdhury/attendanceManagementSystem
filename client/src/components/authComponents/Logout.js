@@ -1,8 +1,8 @@
 import axios from "axios"
 import Button from "react-bootstrap/Button"
 import { useQuery } from "react-query"
-import { server } from "../config/server"
-import { useGlobalContext } from "../context/context"
+import { server } from "../../config/server"
+import { useGlobalContext } from "../../context/context"
 
 const Logout = ()=>{
     const {isLoggedIn, setIsLoggedIn} = useGlobalContext()

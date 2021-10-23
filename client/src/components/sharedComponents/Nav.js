@@ -1,11 +1,12 @@
 import Button from "react-bootstrap/Button"
 import { Switch, Route} from "react-router-dom";
-import Home from "./Home";
-import Login from "./Login";
+import Home from "../pageComponents/Home";
+import Login from "../authComponents/Login";
 import { useHistory } from "react-router-dom";
-import { useGlobalContext } from "../context/context";
-import Logout from "./Logout";
-import AddUser from "./AddUser";
+import { useGlobalContext } from "../../context/context";
+import Logout from "../authComponents/Logout";
+import AddUser from "../userComponents/AddUser";
+import AuthFailure from "../authComponents/AuthFailure";
 
 const Nav = () => {
     const history = useHistory()
@@ -20,6 +21,7 @@ const Nav = () => {
                 <Route exact path ="/">  <Home /> </Route>
                 <Route path = '/login'> <Login /> </Route>
                 <Route path = '/addUser'> <AddUser /> </Route>
+                <Route path = '/authFailure'> <AuthFailure /> </Route>
             </Switch>
         </div>
     )

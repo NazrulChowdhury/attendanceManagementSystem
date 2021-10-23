@@ -1,8 +1,5 @@
 
-import Nav from './components/Nav'
-import Home from './components/Home'
-import Login from './components/Login'
-import Logout from './components/Logout'
+import Nav from './components/sharedComponents/Nav'
 import {useGlobalContext} from './context/context'
 
 

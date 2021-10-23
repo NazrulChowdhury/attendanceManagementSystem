@@ -1,7 +1,7 @@
 import Button from "react-bootstrap/Button"
-import { useGlobalContext } from "../context/context"
+import { useGlobalContext } from "../../context/context"
 import { useState } from "react"
-import { server } from "../config/server"
+import { server } from "../../config/server"
 
 const Login = (params) => {
     const loginHandler = () => window.open(`${server.baseUrl}/auth/google`, "_self") 
