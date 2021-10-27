@@ -1,18 +1,24 @@
-const ApiError = require("../helper/error")
-const { inviteEmailExist, clearInvite } = require("../services/user.services")
+const { getTomorrow } = require("../helper/date")
+const { createSession ,getSessions } = require("../services/session.services")
 
 const Test = async(req, res,next) => {
-     const email = req.body.email
-     const isInvited = await inviteEmailExist(email) 
-     res.send(isInvited) 
-    // const result = await clearInvite(email)
-    // if(result.deletedCount == 0){
-    //     next(ApiError.internal())
-    //     return
-    // } else {
-    //     res.send('deleted!')
+    // try{
+    //     const dateFrom = req.params.dateFrom
+    //     const dateTill = getTomorrow(req.params.dateTill)
+    //     const response = await getSessions(dateFrom, dateTill)
+    //     const responseArray = response.map(item => new Date(item.date).toString())
+    //     res.send(responseArray)
+    // } catch(err){
+    //     console.log(err)
     // }
-    // const result = await inviteEmailExist(email)
-    // console.log(result)
+    try{
+        const newSession = req.body
+        const sessionCreated = await createSession(newSession)
+        sessionCreated ? res.send('success!') : next('error')
+    } catch(err){
+        console.log(err)
+        next(err)
+    }
+
 }    
 module.exports = Test
