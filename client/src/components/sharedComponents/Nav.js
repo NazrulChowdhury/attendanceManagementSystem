@@ -1,12 +1,13 @@
 import Button from "react-bootstrap/Button"
 import { Switch, Route} from "react-router-dom";
-import Home from "../pageComponents/Home";
+import Home from "../pageComponents/home/Home";
 import Login from "../authComponents/Login";
 import { useHistory } from "react-router-dom";
 import { useGlobalContext } from "../../context/context";
 import Logout from "../authComponents/Logout";
 import AddUser from "../userComponents/AddUser";
 import AuthFailure from "../authComponents/AuthFailure";
+import Calendar from "../pageComponents/records/Calendar";
 
 const Nav = () => {
     const history = useHistory()
@@ -14,11 +15,13 @@ const Nav = () => {
     return(
         <div>
             <Button onClick = {() => history.push('/')}> Home </Button>
+            <Button onClick = {() => history.push('/records')}> Records </Button>
             <Button onClick = {() => history.push('/addUser')}> Add User </Button>
             {!isLoggedIn && <Button onClick = {() => history.push('/login')}> Login </Button>}
             {isLoggedIn && <Logout />}
             <Switch>
                 <Route exact path ="/">  <Home /> </Route>
+                <Route exact path ="/records">  <Calendar /> </Route>
                 <Route path = '/login'> <Login /> </Route>
                 <Route path = '/addUser'> <AddUser /> </Route>
                 <Route path = '/authFailure'> <AuthFailure /> </Route>
