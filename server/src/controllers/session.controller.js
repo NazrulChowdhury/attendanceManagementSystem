@@ -4,10 +4,10 @@ const { createSession ,getSessions, deleteSessionById } = require("../services/s
 const addSession = async(req, res, next) => {
     try{
         const newSession = req.body
+        newSession['user'] = req.user
         const sessionCreated = await createSession(newSession)
         sessionCreated ? res.send('success!') : next('error')
     } catch(err){
-        console.log(err)
         next(err)
     }
 }
@@ -19,7 +19,6 @@ const getUserSessions = async(req, res, next) => {
         res.send(JSON.stringify(response))
         next()
     } catch(err){
-        console.log(err)
         next(err)
     }
 }
