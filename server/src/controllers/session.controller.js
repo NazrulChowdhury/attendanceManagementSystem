@@ -1,5 +1,8 @@
 const { getTomorrow } = require("../helper/date")
-const { createSession ,getSessions, deleteSessionById } = require("../services/session.services")
+const { 
+    createSession ,getUserSessions, 
+    deleteSessionById , createActiveSession 
+} = require("../services/session.services")
 
 const addSession = async(req, res, next) => {
     try{
@@ -11,12 +14,12 @@ const addSession = async(req, res, next) => {
         next(err)
     }
 }
-const getUserSessions = async(req, res, next) => {
-    try{
+const getSessions = async(req, res, next) => { 
+    try{ 
         const dateFrom = req.params.dateFrom
         const dateTill = getTomorrow(req.params.dateTill)
-        const response = await getSessions(dateFrom, dateTill)
-        res.send(JSON.stringify(response))
+        const response = await getUserSessions(dateFrom, dateTill, req.user)
+        res.send(response)
         next()
     } catch(err){
         next(err)
@@ -30,5 +33,11 @@ const deleteSession = async(req, res, next) => {
         next(err)
     }
 }
+// const startSession = async(req, res,next) => {
+//     try{
+//         const response = await createActiveSession(req.body.session)
+//         !response ? next()
+//     }
+// }
 
-module.exports = { addSession, getUserSessions, deleteSession}
+module.exports = { addSession, getUserSessions, deleteSession, getSessions}
