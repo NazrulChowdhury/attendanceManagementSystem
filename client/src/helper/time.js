@@ -19,8 +19,8 @@ export const checkOverlap = (sessionArray,startTime,endTime) => {
     }
   })
 }
-export const WithoutTime = (dateTime) => {
-    var date = new Date(dateTime.getTime());
-    date.setHours(0, 0, 0, 0);
-    return date;
+export const stripTime = (dateTime) => {
+    const date = new Date(dateTime.getTime())
+    date.setHours(0, 0, 0, 0)
+    return +new Date(date)
 }

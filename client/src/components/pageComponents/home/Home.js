@@ -1,8 +1,10 @@
-const Home = (params) => {
+import StartSession from "./StartSession.component"
+
+const Home = () => {
     return(
-        <div>
-            Welcome to the home page!
-        </div>
+        <>
+           <StartSession />
+        </>
     )
 }
 export default Home

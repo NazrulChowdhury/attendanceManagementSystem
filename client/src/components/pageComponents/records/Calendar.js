@@ -39,7 +39,7 @@ const Calendar = ()=> {
 
   const fetchSessions = async() => {
     const {dateFrom, dateTill} = dateRange
-    return axios(`http://localhost:8080/session/getSessions/${dateFrom}/${dateTill}`) 
+    return axios(`http://localhost:8080/session/getSessions/${dateFrom}/${dateTill}`,{withCredentials: true}) 
   }
   const {isLoading} = useQuery(['fetchSessions', dateRange], fetchSessions,{
     enabled : !!dateRange,

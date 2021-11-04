@@ -28,6 +28,7 @@ const AddSession = ({setShowModal, setShowCalendar, sessionDate}) => {
        return await axios({
            method : 'post',
            url :'http://localhost:8080/session/addSession', 
+           withCredentials: true,
            data : newSession})
     }
     const{isLoading, mutateAsync} = useMutation(submitSession,{
