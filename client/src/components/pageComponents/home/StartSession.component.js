@@ -6,7 +6,8 @@ import { message } from 'antd'
 import ReactTimerStopwatch from './timer/ReactTimerStopwatch'
 
 const StartSession = (params) => {
-    const [activeSession, setActiveSession] = useState(false)
+    const [timeFrom, setTimeFrom] = useState(false)
+    //const [activeSession, setActiveSession] = useState(false)
     const [isOn, setIsOn] = useState(false)
     const startSessionHandler = () => {
     setIsOn(true)
@@ -37,13 +38,16 @@ const StartSession = (params) => {
         enabled : false,
         onSuccess : (data) => {
             const response = data.data
-            response ? setActiveSession(data.data) : console.log('active session is', response)
+            if(response){
+                setTimeFrom(response.startTime)
+                setIsOn(true)
+            }
         }
     })
     useEffect(() => {
-        if(!activeSession) {fetchActiveSession()}
-    }, [activeSession])
-    console.log(activeSession)
+        if(!timeFrom) {fetchActiveSession()}
+    }, [timeFrom])
+    console.log('FromTime', timeFrom) 
     return (
         <div style = {{width : '700px'}}>
         <ReactTimerStopwatch 
@@ -55,7 +59,7 @@ const StartSession = (params) => {
           displaySeconds = {true}
           color="blue" 
           hintColor="red"
-          activeSession = {activeSession}
+          timeFrom = {timeFrom}
         />
         <Button onClick = {startSessionHandler}>Start Session</Button>
         <Button onClick = { stopSessionHandler}>Stop Session</Button>

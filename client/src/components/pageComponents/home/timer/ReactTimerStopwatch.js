@@ -14,7 +14,7 @@ const ReactTimerStopwatch = (props) => {
         <div className="react-stopwatch-timer__table">
             <Time isOn={props.isOn} hint={getHint} watchType={props.watchType} displayHours={props.displayHours}
                   displayMinutes={props.displayMinutes} displaySeconds={props.displaySeconds}
-                  fromTime={props.fromTime } activeSession = {props.activeSession}/>
+                  timeFrom={props.timeFrom }/>
             {(props.displayCircle === true) ?
                 <Circle color={props.color} tintColor={props.hintColor} hint={hint}/> : null}
             {(props.children !== undefined) ?

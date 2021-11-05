@@ -21,8 +21,25 @@ const Time = (props) => {
         }
         return tmp
     }
+    const timeDiffCalc = (startTime, endTime) => {
+        let diffInMilliSeconds = Math.abs(endTime - startTime)/1000    
+        // calculate hours
+        const hours = Math.floor(diffInMilliSeconds / 3600) % 24
+        diffInMilliSeconds -= hours * 3600;
+        // calculate minutes
+        const minutes = Math.floor(diffInMilliSeconds / 60) % 60
+        diffInMilliSeconds -= minutes * 60;
+        // calculate seconds
+        const seconds = Math.floor(diffInMilliSeconds)
+        return {
+        hours, 
+        minutes,
+        seconds 
+        }
+    }
 
    // const defaultTime = new Date(0, 0, 0, 0, 0, 0, 0)
+    const [startTime, setStartTime] = useState(false)
     const [defaultTime, setDefaultTime] = useState(new Date(0, 0, 0, 0, 0, 0, 0))
     const [text, setText] = useState(getValidDisplayTime(defaultTime.getHours(),defaultTime.getMinutes(), defaultTime.getSeconds()));
     const [idInterval, setIdInterval] = useState('');
@@ -32,7 +49,17 @@ const Time = (props) => {
     const startStopwatch = () => setStartWatch(true)
 
     useEffect(() => {
-        if(startWatch){
+        if(startWatch){ 
+            const defaultYear = defaultTime.getYear()
+            if(props.timeFrom && !startTime) {
+                const {hours, minutes, seconds } = timeDiffCalc(Date.now(), props.timeFrom)
+                const defaultCopy = new Date(+defaultTime)
+                defaultCopy.setHours(hours)
+                defaultCopy.setMinutes(minutes)
+                defaultCopy.setSeconds(seconds)
+                setDefaultTime(defaultCopy)
+                setStartTime(props.timeFrom)
+            }
             const time = new Date(2000,0,0,0,0,0,0);
             const start = Date.now();
             const targetIntervalId = setInterval(function () {
@@ -45,8 +72,10 @@ const Time = (props) => {
             }, 1000);
             setIdInterval(targetIntervalId)
         }
-    },[startWatch])
-
+        // clean up...
+        return clearInterval(idInterval)
+    },[startWatch,startTime])
+    
     if(props.isOn && !isCount){
             startStopwatch()
             setIsCount(true);
@@ -57,11 +86,7 @@ const Time = (props) => {
         setIsCount(false)
         setText('00:00:00')
     }
-    if (props.activeSession){
-        const startTime = new Date(props.activeSession.startTime)
-        console.log('activeSession in date', startTime.toString())
-    }
-    //console.log(props.activeSession)
+
     return(
         <React.Fragment>
             <div>{text}</div>
