@@ -5,9 +5,10 @@ export const formatSession = (data) => {
       return {
         id: item._id,
         date : item.date,
-        startTime : moment(item.startTime).format("hh:mm"),
-        endTime : moment(item.endTime).format("hh:mm"),
-        sessionLength : moment.utc(item.sessionLength).format("hh:mm")
+        startTime : moment(item.startTime).format("HH:mm"),
+        endTime : moment(item.endTime).format("HH:mm"),
+       // sessionLength : moment.utc(item.sessionLength).format("hh:mm")
+       sessionLength : moment.utc(item.sessionLength).format("HH:mm")
       }
   })
 }

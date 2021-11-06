@@ -3,4 +3,10 @@ const getTomorrow = (dateStamp)=>{
     tomorrow.setDate(tomorrow.getDate()+1)
     return tomorrow.getTime()
 }
-module.exports = {getTomorrow}
+
+const stripTime = (targetDate) => {
+    const date = new Date(targetDate)
+    date.setHours(0, 0, 0, 0)
+    return +new Date(date)
+}
+module.exports = {getTomorrow, stripTime}

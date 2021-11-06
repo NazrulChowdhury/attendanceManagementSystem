@@ -5,6 +5,6 @@ const sessionSchema = mongoose.Schema({
     date : Number,
     startTime: Number,
     endTime: Number,
-    sessionLength: Number
+    sessionLength: Number 
 })
 module.exports = mongoose.model('UserSession', sessionSchema)

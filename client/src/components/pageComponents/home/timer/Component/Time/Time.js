@@ -50,7 +50,6 @@ const Time = (props) => {
 
     useEffect(() => {
         if(startWatch){ 
-            const defaultYear = defaultTime.getYear()
             if(props.timeFrom && !startTime) {
                 const {hours, minutes, seconds } = timeDiffCalc(Date.now(), props.timeFrom)
                 const defaultCopy = new Date(+defaultTime)
@@ -63,18 +62,18 @@ const Time = (props) => {
             const time = new Date(2000,0,0,0,0,0,0);
             const start = Date.now();
             const targetIntervalId = setInterval(function () {
-                const delta = Date.now() - start;
-                time.setMinutes(defaultTime.getMinutes());
-                time.setHours(defaultTime.getHours());
-                time.setSeconds(Math.floor(delta / 1000) + defaultTime.getMinutes());
-                props.hint(time.getSeconds());
-                setText(getValidDisplayTime(time.getHours(), time.getMinutes(), time.getSeconds()));
-            }, 1000);
-            setIdInterval(targetIntervalId)
+                const delta = Date.now() - start
+                time.setMinutes(defaultTime.getMinutes())
+                time.setHours(defaultTime.getHours())
+                time.setSeconds(Math.floor(delta / 1000) + defaultTime.getSeconds())
+                props.hint(time.getSeconds())
+                setText(getValidDisplayTime(time.getHours(), time.getMinutes(), time.getSeconds()))
+            }, 1000)
+            setIdInterval(targetIntervalId) 
         }
         // clean up...
-        return clearInterval(idInterval)
-    },[startWatch,startTime])
+        //return clearInterval(idInterval)
+    return clearInterval(idInterval)},[startWatch,startTime])
     
     if(props.isOn && !isCount){
             startStopwatch()

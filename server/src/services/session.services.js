@@ -15,7 +15,19 @@ const deleteSessionById = async(sessionId) => {
     return await UserSession.deleteOne({ _id : sessionId})
 }
 const createActiveSession = async(sessionObj) => {
-    ActiveSession.index( { "expireAt": 1 }, { expireAfterSeconds: 30 } )
     return await new ActiveSession(sessionObj).save()
 }
-module.exports = { createSession, getUserSessions, deleteSessionById, createActiveSession}
+const getActiveSession = async(userId) =>{
+    return await ActiveSession.findOne({user : userId})
+}
+const deleteActiveSession = async(userId) =>{
+    return await ActiveSession.deleteOne({user : userId})
+}
+module.exports = { 
+    createSession, 
+    getUserSessions, 
+    deleteSessionById, 
+    createActiveSession,
+    getActiveSession,
+    deleteActiveSession
+}
