@@ -1,10 +1,16 @@
 import StartSession from "./StartSession.component"
+import TodaysSessions from "./TodaysSession.componenets"
 
 const Home = () => {
     return(
-        <>
-           <StartSession />
-        </>
+        <div style={{display : "flex"}} >
+            <div>
+               <StartSession />
+           </div>
+           <div>
+               <TodaysSessions />
+           </div>
+        </div>
     )
 }
 export default Home
