@@ -1,10 +1,10 @@
 import Button from "react-bootstrap/Button"
 import { useGlobalContext } from "../../context/context"
 import { useState } from "react"
-import { server } from "../../config/server"
+import axios from "axios"
 
 const Login = (params) => {
-    const loginHandler = () => window.open(`${server.baseUrl}/auth/google`, "_self") 
+    const loginHandler = () => window.open(`${axios.defaults.baseURL}/auth/google`, "_self") 
     
    // console.log(userState)
     return(

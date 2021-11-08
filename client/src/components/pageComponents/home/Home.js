@@ -7,7 +7,7 @@ const Home = () => {
             <div>
                <StartSession />
            </div>
-           <div>
+           <div style = {{}}>
                <TodaysSessions />
            </div>
         </div>

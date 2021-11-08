@@ -2,7 +2,6 @@ import axios from "axios"
 import { useState } from "react"
 import { Form, Button, Modal, Alert } from "react-bootstrap"
 import { useMutation } from "react-query"
-import { server } from "../../config/server"
 
 const AddUser =() => {
     const [email, setEmail] = useState('')
@@ -11,7 +10,7 @@ const AddUser =() => {
     const addUser = async() => { 
       return await axios({
       method : 'post',
-      url : `${server.baseUrl}/addUser`,
+      url : '/addUser',
       data : {email}
     })}
 

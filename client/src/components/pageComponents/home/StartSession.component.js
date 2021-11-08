@@ -1,7 +1,7 @@
 import Button from 'react-bootstrap/Button'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import { useMutation, useQuery } from 'react-query'
+import { QueryClient, useMutation, useQuery, useQueryClient } from 'react-query'
 import { message, Spin } from 'antd'
 import ReactTimerStopwatch from './timer/ReactTimerStopwatch'
 
@@ -9,6 +9,7 @@ const StartSession = (params) => {
     const [timeFrom, setTimeFrom] = useState(false)
     const [isOn, setIsOn] = useState(false)
     const [sessionActivated, setSessionActivated] = useState(false)
+    const queryClient = useQueryClient() 
     const startSessionHandler = () => {
     setIsOn(true)
     setTimeFrom(+new Date())
@@ -22,7 +23,7 @@ const StartSession = (params) => {
         return await axios({
             method : 'post',
             withCredentials : true,
-            url : 'http://localhost:8080/session/startSession',
+            url : '/session/startSession',
             data : {startTime : +new Date()}
         })
     }
@@ -37,7 +38,7 @@ const StartSession = (params) => {
         }
     })
     const getActiveSession = async() => {
-        return await axios('http://localhost:8080/session/getActiveSession', {withCredentials : true})
+        return await axios('/session/getActiveSession', {withCredentials : true})
     }
     const {refetch : fetchActiveSession} = useQuery('getActiveSession', getActiveSession,{
         enabled : false,
@@ -52,7 +53,7 @@ const StartSession = (params) => {
     const stopSession = async() => {
         return await axios({
             method : 'post',
-            url : 'http://localhost:8080/session/stopSession',
+            url : '/session/stopSession',
             withCredentials : true,
             data : {
                 sessionLength : +new Date() - timeFrom, 
@@ -62,8 +63,9 @@ const StartSession = (params) => {
     }
     const {mutateAsync : stopActiveSession} = useMutation(stopSession, {
         onSuccess : (data) => {
-            message.success(data.data)
+            message.success(data.data) 
             setSessionActivated(false)
+            queryClient.invalidateQueries('getTodaysSessions')
         },
         onError : (error) => { message.error(`Error! ${error}`)}
     })

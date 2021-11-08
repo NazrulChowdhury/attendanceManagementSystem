@@ -27,7 +27,7 @@ const AddSession = ({setShowModal, setShowCalendar, sessionDate}) => {
        const newSession =  createSessionObj()
        return await axios({
            method : 'post',
-           url :'http://localhost:8080/session/addSession', 
+           url :'/session/addSession', 
            withCredentials: true,
            data : newSession})
     }

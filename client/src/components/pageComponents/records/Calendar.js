@@ -39,7 +39,7 @@ const Calendar = ()=> {
 
   const fetchSessions = async() => {
     const {dateFrom, dateTill} = dateRange
-    return axios(`http://localhost:8080/session/getSessions/${dateFrom}/${dateTill}`,{withCredentials: true}) 
+    return axios(`/session/getSessions/${dateFrom}/${dateTill}`,{withCredentials: true}) 
   }
   const {isLoading} = useQuery(['fetchSessions', dateRange], fetchSessions,{
     enabled : !!dateRange,
@@ -51,7 +51,7 @@ const Calendar = ()=> {
   const deleteSession = async(id) => {
     return await axios({
       method : 'delete',
-      url : 'http://localhost:8080/session/deleteSession',
+      url : '/session/deleteSession',
       data : {id}
     })
   }

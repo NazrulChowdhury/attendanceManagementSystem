@@ -1,18 +1,56 @@
+import axios from "axios"
+import { useState } from "react"
 import Card from "react-bootstrap/Card"
+import { Button } from 'antd';
+import { useQuery } from "react-query"
+import { formatSession } from "../../../helper/time"
 
-const TodaysSessions = (params) => {
+const TodaysSessions = (params) => { 
+    const [sessions, setSessions] = useState([])
+    const [showDeleteButton, setShowDeleteButton] = useState(false)
+    const getTodaysSessions = async() => {
+        const date = +new Date()
+        return await axios(`/session/todaysSessions/${date}`,{withCredentials : true})
+    }
+    const {data} = useQuery('getTodaysSessions',getTodaysSessions,{
+        onSuccess: (data) => {
+            const sessions = formatSession(data.data)
+            setSessions(sessions)
+
+        }
+    })
     return(
-        <Card style={{ width: '18rem', height : '300px',backgroundColor : '#6C09E2'}}>
-            <Card.Img variant="top" src="holder.js/100px180" />
-            <Card.Body style ={{background : 'lightBlue',margin: '20px', borderRadius : '5px'}}>
-                <Card.Title>Card Title</Card.Title>
+        <Card style={{ width: '18rem', height : '300px', background : '#6C09E2'}}>
+            { sessions.length > 0 && sessions.map(session =>{ 
+            return ( 
+            <Card.Body 
+            key = {session.id}
+            style ={{background : 'lightBlue',margin: '20px', borderRadius : '5px'}}
+            onClick = {() => setShowDeleteButton(!showDeleteButton) }>
+                <Card.Title>Duration {session.sessionLength} hh:mm</Card.Title>
                 <Card.Text>
-                Some quick example text to build on the card title and make up the bulk of
-                the card's content.
+                Start Time: {session.startTime}  <br />
+                Stop Time: {session.endTime} 
                 </Card.Text>
-                <button variant="primary">Go somewhere</button>
-            </Card.Body>
+                {showDeleteButton && 
+                    <Button style = {{background : '#6C09E2', color: 'white', borderRadius: '20px'}}
+                    onClick = {() => {}}
+                    >Delete</Button>}
+            </Card.Body> )
+        })}            
         </Card>
     )
 }
 export default TodaysSessions
+
+
+{/* <Card style={{ width: '18rem', height : '300px', background : '#6C09E2'}}>
+{ sessions.length > 0 && sessions.map(session =>{ 
+<Card.Body style ={{background : 'lightBlue',margin: '20px', borderRadius : '5px'}}>
+    <Card.Title>session length : </Card.Title>
+    <Card.Text>
+    Some quick example text 
+    </Card.Text>
+</Card.Body>
+}) }            
+</Card> */}
