@@ -1,6 +1,4 @@
 import Button from "react-bootstrap/Button"
-import { useGlobalContext } from "../../context/context"
-import { useState } from "react"
 import axios from "axios"
 
 const Login = (params) => {

@@ -7,6 +7,7 @@ const AddUser =() => {
     const [email, setEmail] = useState('')
     const [response, setResponse] = useState('')
     const [error, setError] = useState('')
+    
     const addUser = async() => { 
       return await axios({
       method : 'post',

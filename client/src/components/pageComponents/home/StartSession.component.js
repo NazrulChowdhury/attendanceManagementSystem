@@ -75,7 +75,7 @@ const StartSession = (params) => {
     }, [timeFrom])
     console.log('time from is..', timeFrom)
     return (
-        <div style = {{width : '700px'}}>
+        < >
         <ReactTimerStopwatch 
           isOn={isOn} 
           className="react-stopwatch-timer__table" 
@@ -87,11 +87,13 @@ const StartSession = (params) => {
           hintColor="red"
           timeFrom = {timeFrom}
         /> 
-        { sessionActivated && <Button variant="success" disabled >Start Session</Button>}
-        {!sessionActivated && <Button variant="success" onClick = {startSessionHandler}>Start Session</Button>}
-        {sessionActivated && <Button variant="danger" onClick = { stopSessionHandler}>Stop Session</Button>}
-        {!sessionActivated && <Button variant="danger" disabled>Stop Session</Button>}
-      </div>
+        <div style={{display : 'flex', flexDirection: 'row', justifyContent: 'center'}}>
+            { sessionActivated && <Button style = {{marginRight: '5px'}} variant="success" disabled >Start Session</Button>}
+            {!sessionActivated && <Button style = {{marginRight: '5px'}} variant="success" onClick = {startSessionHandler}>Start Session</Button>}
+            {sessionActivated && <Button style = {{marginLeft: '5px'}} variant="danger" onClick = { stopSessionHandler}>Stop Session</Button>}
+            {!sessionActivated && <Button style = {{marginLeft: '5px'}} variant="danger" disabled>Stop Session</Button>}
+        </div>
+      </>
     )
 }
 export default StartSession

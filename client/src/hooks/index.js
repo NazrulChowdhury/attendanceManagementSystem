@@ -1,17 +1,16 @@
-// const deleteSession = async(id) => {
-//     return await axios({
-//       method : 'delete',
-//       url : 'http://localhost:8080/session/deleteSession',
-//       data : {id}
-//     })
-//   }
-// const useDeleteSession = async(id) => {
-//     const [deleteSession, setDeleteSession] = useState(false)
-//     setDeleteSession(
-//         return await axios({
-//             method : 'delete',
-//             url : 'http://localhost:8080/session/deleteSession',
-//             data : {id}
-//           })
-//     )
-// }
+import axios from "axios"
+import { useState } from "react"
+
+export const useDeleteSession = async() => {
+    const [deleteSession, setDeleteSession] = useState(false)
+        setDeleteSession( async(id) => {
+            return await axios({
+                method : 'delete',
+                withCredentials : true,
+                url : '/session/deleteSession',
+                data : {id}
+            })
+        } )
+    return {deleteSession}
+       
+}

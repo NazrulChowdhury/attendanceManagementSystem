@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@nivo/calendar": "^0.74.0",
+    "@nivo/core": "^0.74.0",
     "antd": "^4.16.13",
     "axios": "^0.22.0",
     "bootstrap": "^5.1.1",
