@@ -23,11 +23,15 @@ const getActiveSession = async(userId) =>{
 const deleteActiveSession = async(userId) =>{
     return await ActiveSession.deleteOne({user : userId})
 }
+const getTodaysSessions = async(date, userId) =>{
+    return await UserSession.find({date : date, user : userId})
+}
 module.exports = { 
     createSession, 
     getUserSessions, 
     deleteSessionById, 
     createActiveSession,
     getActiveSession,
-    deleteActiveSession
+    deleteActiveSession,
+    getTodaysSessions
 }

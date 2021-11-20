@@ -57,7 +57,7 @@ const stopSession = async(req, res, next) => {
             sessionLength : req.body.sessionLength
         }
         const sessionAdded = await sessionService.createSession(newSession)
-        sessionAdded ? res.send('Session Completed!') : res.send('error')
+        sessionAdded ? res.send('Session Completed!') : next('error')
     }catch(err){
         next(err)
     }
@@ -70,9 +70,19 @@ const getActiveSession = async(req, res, next) => {
         next(err)
     }
 }
+const todaysSessions = async(req, res, next) => {
+    const date = stripTime(Number(req.params.date))
+    try{
+        const sessions = await sessionService.getTodaysSessions(date, req.user)
+        res.send(sessions)
+    } catch(err){
+        next(err)
+    }
+}
 
 module.exports = { 
     addSession, deleteSession, 
     getSessions, startSession, 
-    stopSession, getActiveSession
+    stopSession, getActiveSession,
+    todaysSessions
 }
