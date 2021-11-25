@@ -36,7 +36,6 @@ const TodaysSessions = (params) => {
         },
         onError : (error) => message.error(`Error! ${error}`)
       })
-      console.log('deleteSession', deleteSession)
     return(
         <Card style={{ width: '18rem', height : '300px', background : '#6C09E2',overflowY: 'scroll'}}>
             { sessions.length > 0 && sessions.map(session =>{ 

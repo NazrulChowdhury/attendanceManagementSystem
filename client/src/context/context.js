@@ -1,21 +1,17 @@
-import {useContext, createContext, useReducer, useState, useEffect} from 'react'
-import userReducer from './reducers/userReducer'
-import GetUserStatus from './stateHooks/GetUserStatus'
+import {useContext, createContext, useState} from 'react'
+
 
 const GlobalContext = createContext()
+
 export const useGlobalContext = () => useContext(GlobalContext)
 
 const GlobalContextProvider = (props) => {
 
-    const {isLoggedIn , setIsLoggedIn} = GetUserStatus('/auth/getUserStatus')
+   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
-    // all reducers... 
-    const [userState,userDispatch] = useReducer(userReducer,{})
 
-    const value = {
-        userState, userDispatch,
-        isLoggedIn, setIsLoggedIn
-    }
+    const value = { isLoggedIn, setIsLoggedIn}
+    
     return(
         <GlobalContext.Provider value ={value}>
             {props.children}

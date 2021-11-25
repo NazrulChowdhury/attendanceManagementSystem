@@ -2,8 +2,10 @@ import StartSession from "./StartSession.component"
 import TodaysSessions from "./TodaysSession.componenets"
 import './home.css'
 import NivoCalender from "./NivoCalender"
+import { useState } from "react"
 
 const Home = () => {
+    const [thisYar, setYear] = useState(true)
     return(
         <div>
             <div className = "firstRow" >

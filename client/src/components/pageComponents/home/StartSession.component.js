@@ -73,7 +73,6 @@ const StartSession = (params) => {
         if(!timeFrom) { fetchActiveSession() }
         if(timeFrom) { setSessionActivated(true)}
     }, [timeFrom])
-    console.log('time from is..', timeFrom)
     return (
         < >
         <ReactTimerStopwatch 
