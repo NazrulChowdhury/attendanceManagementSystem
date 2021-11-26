@@ -1,4 +1,4 @@
-const { getTomorrow , stripTime } = require("../helper/date")
+const { getTomorrow , stripTime, getDateString } = require("../helper/date")
 const sessionService = require("../services/session.services")
 
 const addSession = async(req, res, next) => {
@@ -79,10 +79,33 @@ const todaysSessions = async(req, res, next) => {
         next(err)
     }
 }
+const getSessionHeatMap = async(req,res,next) =>{
+    const dateFrom = req.params.dateFrom
+    const dateTill = getTomorrow(req.params.dateTill)
+    try{
+        const sessions = await sessionService.getUserSessions(dateFrom, dateTill, req.user)
+        const dateReducedSessions = sessions.reduce((acc, val) => {
+            const found = acc.find((findval) => val.date === findval.date)
+            if (!found) acc.push(val)
+            else found.sessionLength += val.sessionLength
+            return acc
+          }, [])
+        const heatMapSessionsArray = dateReducedSessions.map((session) => {       
+            return {
+                value: session.sessionLength,
+                day: getDateString(session.date)
+            }
+        })
+        res.send(heatMapSessionsArray)
+    } catch(err){
+        next(err)
+    }
+
+}
 
 module.exports = { 
     addSession, deleteSession, 
     getSessions, startSession, 
     stopSession, getActiveSession,
-    todaysSessions
+    todaysSessions, getSessionHeatMap
 }

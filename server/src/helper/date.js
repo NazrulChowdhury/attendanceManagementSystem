@@ -9,4 +9,8 @@ const stripTime = (targetDate) => {
     date.setHours(0, 0, 0, 0)
     return +new Date(date)
 }
-module.exports = {getTomorrow, stripTime}
+const getDateString = (date) =>{
+    const dateObj = new Date(date)
+    return dateObj.toISOString().slice(0, 10)
+}
+module.exports = {getTomorrow, stripTime, getDateString}
