@@ -1,10 +1,11 @@
 
 import Nav from './components/sharedComponents/Nav'
 import {useGlobalContext} from './context/context'
-import 'antd/dist/antd.css'; 
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import Login from './components/authComponents/Login';
+import 'antd/dist/antd.css' 
+import './styles/app.css'
+import axios from 'axios'
+import { useEffect, useState } from 'react'
+import Login from './components/authComponents/Login'
 
 axios.defaults.baseURL = 'http://localhost:8080'
 
@@ -19,7 +20,7 @@ function App() {
   },[])
 
   return (
-      <div>
+      <div className = "appContainer">
          {isLoggedIn && <Nav /> }
          {!isLoggedIn && <Login />}
          {/* {broken component goes here} */}

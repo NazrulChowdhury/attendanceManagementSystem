@@ -12,14 +12,15 @@ const NivoCalender = () => {
     const {isLoading} = useQuery('getHeatMap', getHeatMap,{
         onSuccess : (data) => { setHeatMapData(data.data)}
     })
-    const theme = 
-    {
-        "background": "#6C09E2",
-        "textColor": "white",
-        "fontSize": 11
+    const theme = {
+    "background": "#6C09E2",
+    "textColor": "white",
+    "fontSize": 11,
+    "borderRadius": "5px"
     }
     return( 
-        <>  {heatMapData && 
+        <>  
+        {heatMapData && 
            <ResponsiveCalendar
                 data={heatMapData} 
                 theme = {theme}

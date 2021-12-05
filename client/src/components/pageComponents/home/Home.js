@@ -16,8 +16,10 @@ const Home = () => {
                    <TodaysSessions />
                 </div>
             </div>
-            <div style = {{height: '200px'}}>
-                <NivoCalender />
+            <div className = "secondRow">
+                <div id = "heatMapContainer"> 
+                   <NivoCalender />
+                </div>
             </div>
         </div>
     )

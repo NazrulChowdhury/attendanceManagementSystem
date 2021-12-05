@@ -1,0 +1,8 @@
+body, html {
+    height: 100%;
+  }
+.appContainer {
+    background: url("../assets/image1.jpg");  /* no-repeat center center fixed; */
+    background-size:cover;
+    box-shadow:inset 0 0 0 2000px rgba(12, 12, 12, 0.7);
+}
