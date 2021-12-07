@@ -1,11 +1,11 @@
-
-import Nav from './components/sharedComponents/Nav'
 import {useGlobalContext} from './context/context'
 import 'antd/dist/antd.css' 
 import './styles/app.css'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import Login from './components/authComponents/Login'
+import SideNavigation from './components/sharedComponents/SideNavigation'
+import PageContainer from './components/sharedComponents/PageContainer'
 
 axios.defaults.baseURL = 'http://localhost:8080'
 
@@ -21,7 +21,12 @@ function App() {
 
   return (
       <div className = "appContainer">
-         {isLoggedIn && <Nav /> }
+        <div className = ''>
+          <SideNavigation />
+        </div>
+        <div className ='pageContainer'>
+         {isLoggedIn && <PageContainer />}
+        </div>      
          {!isLoggedIn && <Login />}
          {/* {broken component goes here} */}
      </div>    

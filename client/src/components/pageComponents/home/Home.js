@@ -7,7 +7,7 @@ import { useState } from "react"
 const Home = () => {
     const [thisYar, setYear] = useState(true)
     return(
-        <div>
+        <>
             <div className = "firstRow" >
                 <div className = "startSessionContainer">
                    <StartSession />
@@ -21,7 +21,7 @@ const Home = () => {
                    <NivoCalender />
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 export default Home
