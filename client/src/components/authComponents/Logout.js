@@ -1,19 +1,23 @@
 import axios from "axios"
-import Button from "react-bootstrap/Button"
 import { useQuery } from "react-query"
 import { useGlobalContext } from "../../context/context"
+import { Spin, Space } from 'antd'
 
 const Logout = ()=>{
-    const {isLoggedIn, setIsLoggedIn} = useGlobalContext()
+    const {setIsLoggedIn} = useGlobalContext()
     const logOutHandler = async() => await axios(`/auth/logout`, {withCredentials : true})
-    const {isLoding, error, data, refetch} = useQuery('logout', logOutHandler,{
-        onSuccess : (data) => setIsLoggedIn(data.data),
-        enabled : false
+    const {isLoding} = useQuery('logout', logOutHandler,{
+        onSuccess : (data) => setIsLoggedIn(data.data)
     })
     return(
-        <Button onClick = {() => {refetch()}}>
-            Log Out
-        </Button>
+         
+            <div style = {{height: '100%', width: '100%',display:'flex', justifyContent: 'center' }}>
+                {isLoding && 
+                <Space size="large">
+                    <Spin size="large" />
+                </Space>  }
+            </div>
+        
     )
 }
 export default Logout

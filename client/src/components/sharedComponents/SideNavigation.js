@@ -31,7 +31,9 @@ const SideNavigation = () => {
                     Admin
                 </MenuItem> 
                 <MenuItem 
-                icon = {<AiOutlineLogout size={50} />}>
+                icon = {<AiOutlineLogout size={50} />}
+                onClick = {() => history.push('/logout')}
+                >
                     Logout
                 </MenuItem>
             </Menu>

@@ -72,7 +72,7 @@ const Calendar = ()=> {
   return (
     <>
       { showCalendar && 
-        <div>  
+        <div style = {{ height: '100%' , width: '100%'}}>  
           <RevoCalendar events = {events} primaryColor ='#6C09E2'
             allowDeleteEvent = {true}
             deleteEvent = {deleteEvent}
