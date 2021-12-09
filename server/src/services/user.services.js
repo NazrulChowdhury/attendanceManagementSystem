@@ -8,7 +8,7 @@ const getSocialUserById = async(platformName,id)=>{
 }
 
 const createSocialUser = async(user)=>{
-    const { sub, given_name, family_name, email, locale} = user
+    const { sub, given_name, family_name, email, locale, picture, userType} = user
     return await new User({
         firstName:given_name,     
         lastName: family_name,
@@ -16,7 +16,9 @@ const createSocialUser = async(user)=>{
         social:{
           googleID:sub
         },
-        locale :locale
+        locale,
+        picture,
+        userType       
     })
     .save()
 
@@ -34,9 +36,12 @@ const inviteEmailExist = async(email)=>{
 const clearInvite = async(email) =>{
     return await inviteEmail.deleteOne({'email':email})
 }
+const updateUserPicture = async(id, picture) => {
+    return await User.updateOne({_id : id}, {picture})
+}
 module.exports = {
     getSocialUserById,createSocialUser,createInviteEmail,
-    inviteEmailExist, clearInvite
+    inviteEmailExist, clearInvite, updateUserPicture
 }
 
 

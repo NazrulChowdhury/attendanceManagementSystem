@@ -15,6 +15,12 @@ const userSchema = new Schema({
     },
     locale: {
         type: String
+    },
+    picture : {
+        type: String
+    },
+    userType : {
+        type: String
     }
 })
 
