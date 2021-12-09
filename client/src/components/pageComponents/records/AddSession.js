@@ -54,7 +54,7 @@ const AddSession = ({setShowModal, setShowCalendar, sessionDate}) => {
     
     
     return (
-        <>  
+        <div style = {{ height: '100%' , width: '100%'}}>  
             <Modal.Dialog> 
                 <Modal.Header style = {{"backgroundColor" : "#6C09E2"}}>
                 <Modal.Title style = {{"color" : "white"}}>Add new Session</Modal.Title>
@@ -102,7 +102,7 @@ const AddSession = ({setShowModal, setShowCalendar, sessionDate}) => {
                 closable
             />
             )}
-        </>
+        </div>
 
     )
 }

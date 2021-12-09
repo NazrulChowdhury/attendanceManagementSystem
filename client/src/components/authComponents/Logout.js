@@ -11,7 +11,7 @@ const Logout = ()=>{
     })
     return(
          
-            <div style = {{height: '100%', width: '100%',display:'flex', justifyContent: 'center' }}>
+            <div className = "logoutDiv">
                 {isLoding && 
                 <Space size="large">
                     <Spin size="large" />

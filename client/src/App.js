@@ -21,13 +21,19 @@ function App() {
 
   return (
       <div className = "appContainer">
-        <div className = ''>
-          <SideNavigation />
-        </div>
-        <div className ='pageContainer'>
-         {isLoggedIn && <PageContainer />}
-        </div>      
-         {!isLoggedIn && <Login />}
+        {isLoggedIn && 
+        <>
+          <div>
+            <SideNavigation />
+          </div>
+          <div className ='pageContainer'>
+            <PageContainer />
+          </div> 
+        </>  }
+        {!isLoggedIn && 
+        <div className= "loginComponent">
+          <Login />
+        </div>}          
          {/* {broken component goes here} */}
      </div>    
   )

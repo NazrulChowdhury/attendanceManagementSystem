@@ -16,11 +16,11 @@ const NivoCalender = () => {
     "background": "#6C09E2",
     "textColor": "white",
     "fontSize": 11,
-    "borderRadius": "5px"
+    "borderRadius": "10px"
     }
     return( 
-        <>  
-        {heatMapData && 
+        <>
+          {heatMapData &&  
            <ResponsiveCalendar
                 data={heatMapData} 
                 theme = {theme}

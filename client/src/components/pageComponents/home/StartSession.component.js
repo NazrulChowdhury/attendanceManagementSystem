@@ -86,7 +86,7 @@ const StartSession = (params) => {
           hintColor="red"
           timeFrom = {timeFrom}
         /> 
-        <div style={{display : 'flex', flexDirection: 'row', justifyContent: 'center'}}>
+        <div className='flexRowCenter' style={{marginTop : '15px'}}>
             { sessionActivated && <Button style = {{marginRight: '5px'}} variant="success" disabled >Start Session</Button>}
             {!sessionActivated && <Button style = {{marginRight: '5px'}} variant="success" onClick = {startSessionHandler}>Start Session</Button>}
             {sessionActivated && <Button style = {{marginLeft: '5px'}} variant="danger" onClick = { stopSessionHandler}>Stop Session</Button>}

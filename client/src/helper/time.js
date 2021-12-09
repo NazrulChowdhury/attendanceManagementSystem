@@ -26,20 +26,22 @@ export const stripTime = (dateTime) => {
     return +new Date(date)
 }
 export const timeDiffCalc = (startTime, endTime) => {
-    let diffInMilliSeconds = Math.abs(endTime - startTime)/1000  
-    
-    // calculate hours
+    let diffInMilliSeconds = Math.abs(endTime - startTime)/1000     
     const hours = Math.floor(diffInMilliSeconds / 3600) % 24
-    diffInMilliSeconds -= hours * 3600;
-    // calculate minutes
+    diffInMilliSeconds -= hours * 3600
     const minutes = Math.floor(diffInMilliSeconds / 60) % 60
-    diffInMilliSeconds -= minutes * 60;
-    // calculate seconds
+    diffInMilliSeconds -= minutes * 60
     const seconds = Math.floor(diffInMilliSeconds)
-
     return {
     hours, 
     minutes,
     seconds 
     }
+}
+export const getDateString = () =>{
+  var dateObj = new Date()
+  var month = dateObj.getUTCMonth() + 1
+  var day = dateObj.getUTCDate()
+  var year = dateObj.getUTCFullYear()
+  return day + "/" + month + "/" + year
 }

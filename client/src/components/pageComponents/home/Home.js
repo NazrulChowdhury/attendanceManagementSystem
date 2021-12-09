@@ -8,20 +8,39 @@ const Home = () => {
     const [thisYar, setYear] = useState(true)
     return(
         <>
-            <div className = "firstRow" >
-                <div className = "startSessionContainer">
-                   <StartSession />
+            <div className = "firstColumn" >
+                <div className = "flexRowCenter">
+                    <div className= "flexColumnCenter">
+                    <StartSession />
+                    </div>
                 </div>
-                <div className = "todaysSessionsContainer">
-                   <TodaysSessions />
-                </div>
-            </div>
-            <div className = "secondRow">
+                <div className = "flexRowCenter"></div>
                 <div id = "heatMapContainer"> 
                    <NivoCalender />
+                </div>
+            </div>
+            <div className = "secondColumn flexRowCenter">
+                <div className = "todaysSessionsContainer stopOverFlow">
+                   <TodaysSessions />
                 </div>
             </div>
         </>
     )
 }
 export default Home
+
+{/* <>
+<div className = "firstRow" >
+    <div className = "startSessionContainer">
+       <StartSession />
+    </div>
+    <div className = "todaysSessionsContainer">
+       <TodaysSessions />
+    </div>
+</div>
+<div className = "secondRow">
+    <div id = "heatMapContainer"> 
+       <NivoCalender />
+    </div>
+</div>
+</> */}

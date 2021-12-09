@@ -2,7 +2,7 @@ body, html {
     height: 100%;
   }
 .appContainer {
-    background: url("../assets/image1.jpg");  /* no-repeat center center fixed; */
+    background: url("../assets/image1.jpg"); 
     background-size:cover;
     box-shadow:inset 0 0 0 2000px rgba(12, 12, 12, 0.7);
     display: flex;
@@ -10,14 +10,25 @@ body, html {
     height: 100% !important;
     width: 100%;
 }
-.sideNavigation{
-
-}
 .pageContainer{
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: row;
 }
-
+.loginComponent {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background: url("../assets/login.jpg"); 
+  background-size:cover;
+}
+.stopOverFlow {
+overflow: auto;
+}
 #root {
   height: 100%;
 }

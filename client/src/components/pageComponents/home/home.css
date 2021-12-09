@@ -1,46 +1,54 @@
-.firstRow{ 
+.firstColumn {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-evenly;
+}
+.secondColumn {
+    display: flex;
+    flex-grow: 3;
+}
+.flexRowCenter {
     display: flex; 
     flex-direction: row;
-    justify-content : space-evenly;
+    justify-content: center;
+    align-items: center;    
 }
-.startSessionContainer{
+.flexColumnCenter{
     display : flex;
     flex-direction: column;
     justify-content : center;
     align-items : center;
 }
 .todaysSessionsContainer{
-    display: flex;
-    flex-direction: row;
-    justify-content : center;
-    align-items : center;
+ height: 95%;
+ width: 95%;
+ background-color: #6C09E2;
+ border-radius: 5px;
 }
-.todaysSession{
-    /* height: 100px;
-    width: 100px;
-    background-color: blueviolet; */
-}
-.secondRow {
-    display : flex;
-    flex-direction: row;
-    justify-content : center;
-    align-items : center;
-    background: rgba(255, 255, 255, 0);
-}
+
 #heatMapContainer {
     height: 200px;
-    width: 80%;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    border-radius: 5px;
-    
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
     /* position: absolute;
     bottom: 2%; */
+}
+.sessionHeader h3, h5{
+    color: #05E9EE; 
 }
 .clockTime{
     color: #05E9EE; 
     font-size: 20px;
 }
+.logoutDiv{
+    height: 100%; 
+    width: 100%;
+    display:flex;
+    justify-content: center;
+}
+.
 ::-webkit-scrollbar {
     width: 10px;
 }

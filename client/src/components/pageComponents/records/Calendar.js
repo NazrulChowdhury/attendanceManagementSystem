@@ -70,7 +70,7 @@ const Calendar = ()=> {
   },[selectedDate])
 
   return (
-    <>
+    <div style = {{ height: '100%' , width: '100%'}}>
       { showCalendar && 
         <div style = {{ height: '100%' , width: '100%'}}>  
           <RevoCalendar events = {events} primaryColor ='#6C09E2'
@@ -85,7 +85,7 @@ const Calendar = ()=> {
         </div> 
       }
       {showModal && 
-        <div>
+        <div className="flexRowCenter">
           <AddSession 
             setShowModal={setShowModal}
             setShowCalendar = {setShowCalendar}
@@ -93,7 +93,7 @@ const Calendar = ()=> {
           />
         </div>
       }
-    </>
+    </div>
   )
 }
 
