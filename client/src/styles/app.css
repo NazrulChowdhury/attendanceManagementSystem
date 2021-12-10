@@ -27,8 +27,13 @@ body, html {
   background-size:cover;
 }
 .stopOverFlow {
-overflow: auto;
+  overflow: auto;
 }
 #root {
   height: 100%;
 }
+.customButton {
+  background : #6C09E2; 
+  color: white; 
+  border-radius: 20px;
+} 

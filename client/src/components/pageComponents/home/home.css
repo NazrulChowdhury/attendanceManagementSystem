@@ -48,7 +48,16 @@
     display:flex;
     justify-content: center;
 }
-.
+.customCard {
+    background : #6C09E2;
+    border: none;
+    margin: 0px;
+}
+.customCardBody {
+    background : lightBlue;
+    margin: 10px;
+    border-radius : 5px;
+}
 ::-webkit-scrollbar {
     width: 10px;
 }

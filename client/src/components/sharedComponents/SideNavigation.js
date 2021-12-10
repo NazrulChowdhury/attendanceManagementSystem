@@ -1,8 +1,9 @@
 import { useHistory} from "react-router-dom"
-import { ProSidebar, Menu, MenuItem, SubMenu, FaGem } from 'react-pro-sidebar'
+import { ProSidebar, Menu, MenuItem, SidebarHeader } from 'react-pro-sidebar'
 import { AiFillDashboard, AiOutlineLogout } from "react-icons/ai"
 import { BsCalendar3 } from "react-icons/bs"
 import { MdAdminPanelSettings } from "react-icons/md"
+import MyAvatar from "./MyAvatar"
 
 const SideNavigation = () => { 
     const history = useHistory()
@@ -11,6 +12,9 @@ const SideNavigation = () => {
         iconShape="round"
         width = "200px"
         >
+        <SidebarHeader> 
+           <MyAvatar />
+        </SidebarHeader>
             <Menu >
                 <MenuItem 
                 icon= {<AiFillDashboard size={50} />}

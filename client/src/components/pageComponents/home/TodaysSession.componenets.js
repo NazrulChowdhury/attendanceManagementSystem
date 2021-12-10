@@ -1,14 +1,13 @@
 import axios from "axios"
 import { useState } from "react"
-import Card from "react-bootstrap/Card"
-import { Button, message } from 'antd';
+import { message } from 'antd'
 import { useQuery, useQueryClient, useMutation } from "react-query"
 import { formatSession, getDateString } from "../../../helper/time"
 import './home.css'
+import SessionCard from "./SessionCard";
 
 const TodaysSessions = (params) => { 
     const [sessions, setSessions] = useState([])
-    const [showDeleteButton, setShowDeleteButton] = useState(false)
     const queryClient = useQueryClient()
     const today = getDateString()
 
@@ -50,27 +49,12 @@ const TodaysSessions = (params) => {
                  {sessions.length === 0 && <div style = {{ color: '#05E9EE'}}> No Session Today...</div>}
                 <div> 
                     {sessions.length !== 0 && sessions.map(session => { 
-                        return (
-                            <Card style={{  background : '#6C09E2',border: 'none', margin: '0px'}}>
-                                <Card.Body 
-                                key = {session.id}
-                                style ={{
-                                    background : 'lightBlue',
-                                    margin: '10px', 
-                                    borderRadius : '5px'}}
-                                onClick = {() => setShowDeleteButton(!showDeleteButton) }>
-                                    <Card.Title>Duration {session.sessionLength} hh:mm</Card.Title>
-                                    <Card.Text>
-                                    Start Time: {session.startTime}  <br />
-                                    Stop Time: {session.endTime} 
-                                    </Card.Text>
-                                    {showDeleteButton && 
-                                        <Button style = {{background : '#6C09E2', color: 'white', borderRadius: '20px'}}
-                                        onClick = {() => triggerDeleteSession(session.id)}
-                                        >Delete</Button>}
-                                </Card.Body>           
-                            </Card> 
-                        )                
+                        return(
+                            <SessionCard 
+                            session = {session}
+                            triggerDeleteSession = {triggerDeleteSession}
+                            />   
+                        )       
                     })}
                 </div>          
             </div> 
