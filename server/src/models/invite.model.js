@@ -6,6 +6,10 @@ const inviteEmail = new Schema({
     email : {
         type: mongoose.SchemaTypes.Email,
         required : [true, 'Must enter a valid Email']
+    },
+    role: {
+        type: String,
+        required: [true, 'Must enter a user role']
     }
 })
 

@@ -7,8 +7,8 @@ const getSocialUserById = async(platformName,id)=>{
     return await User.findOne(query)
 }
 
-const createSocialUser = async(user)=>{
-    const { sub, given_name, family_name, email, locale, picture, userType} = user
+const createSocialUser = async(profile, role)=>{ 
+    const { sub, given_name, family_name, email, locale, picture} = profile
     return await new User({
         firstName:given_name,     
         lastName: family_name,
@@ -18,15 +18,16 @@ const createSocialUser = async(user)=>{
         },
         locale,
         picture,
-        userType       
+        role      
     })
     .save()
 
 }
 
-const createInviteEmail = async(InviteEmail) => {
+const createInviteEmail = async(email, role) => {
     return await new inviteEmail({
-        email : InviteEmail 
+        email,
+        role
     }).save()
 }
 const inviteEmailExist = async(email)=>{

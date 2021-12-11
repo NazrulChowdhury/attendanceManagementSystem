@@ -19,7 +19,7 @@ const userSchema = new Schema({
     picture : {
         type: String
     },
-    userType : {
+    role : {
         type: String
     }
 })

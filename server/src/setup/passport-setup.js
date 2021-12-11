@@ -30,8 +30,9 @@ passport.use(new GoogleStrategy({
         done(AuthError.badRequest(409,'user need to be added first!'))
         return
       }
-      const newUser = await createSocialUser(profile._json)
-      await clearInvite(email)
+      const {role} = isInvited
+      const newUser = await createSocialUser(profile._json, role)
+      await clearInvite(profile._json.email)
       done(null,newUser)
 
     } catch(err){

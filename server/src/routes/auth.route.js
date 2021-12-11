@@ -5,7 +5,7 @@ const authController = require('../controllers/auth.Controller')
 //google auth routes
 router.get(
     '/google', 
-    passport.authenticate('google',{scope:['profile','email']})
+    passport.authenticate('google',{scope:['profile','email']}) 
 )
 router.get(
     '/google/redirect',

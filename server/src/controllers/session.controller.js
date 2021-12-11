@@ -1,7 +1,7 @@
 const { getTomorrow , stripTime, getDateString } = require("../helper/date")
 const sessionService = require("../services/session.services")
 
-const addSession = async(req, res, next) => {
+const addSession = async(req, res, next) => { 
     try{
         const newSession = req.body
         newSession['user'] = req.user
