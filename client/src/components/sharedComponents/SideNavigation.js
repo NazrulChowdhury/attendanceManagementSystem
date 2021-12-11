@@ -1,5 +1,5 @@
 import { useHistory} from "react-router-dom"
-import { ProSidebar, Menu, MenuItem, SidebarHeader } from 'react-pro-sidebar'
+import { ProSidebar, Menu, MenuItem, SidebarHeader, SubMenu} from 'react-pro-sidebar'
 import { AiFillDashboard, AiOutlineLogout } from "react-icons/ai"
 import { BsCalendar3 } from "react-icons/bs"
 import { MdAdminPanelSettings } from "react-icons/md"
@@ -28,12 +28,23 @@ const SideNavigation = () => {
                 >
                     Records
                 </MenuItem> 
-                <MenuItem 
-                icon = {<MdAdminPanelSettings size={50} />}
-                onClick = {() => history.push('/admin') }
-                >
-                    Admin
-                </MenuItem> 
+                    <SubMenu title="Admin" icon={<MdAdminPanelSettings size={50} />}
+                    >
+                        <MenuItem
+                        onClick = {() => history.push('/addUser') }
+                        >  
+                        Add User
+                        </MenuItem>
+
+                        <MenuItem
+                        onClick = {() => history.push('/userRecords') }
+                        >View user records
+                        </MenuItem>
+                        <MenuItem
+                        onClick = {() => history.push('/manageUsers') }
+                        >Manage users
+                        </MenuItem>
+                    </SubMenu>
                 <MenuItem 
                 icon = {<AiOutlineLogout size={50} />}
                 onClick = {() => history.push('/logout')}

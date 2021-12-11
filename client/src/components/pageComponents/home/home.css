@@ -58,6 +58,16 @@
     margin: 10px;
     border-radius : 5px;
 }
+.modal-content {
+    width: 500px;
+    height: 200px;
+  }
+.ant-table-tbody {
+ background : lightBlue;
+  }
+.ant-table-thead{
+ background: blue;
+}
 ::-webkit-scrollbar {
     width: 10px;
 }
