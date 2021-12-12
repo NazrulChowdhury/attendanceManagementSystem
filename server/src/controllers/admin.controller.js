@@ -1,5 +1,5 @@
 const ApiError = require( '../helper/error')
-const {createInviteEmail, inviteEmailExist} = require('../services/user.services')
+const {createInviteEmail, inviteEmailExist} = require('../services/admin.services')
 
 const addUser = async(req, res, next) => { 
     const {email, role} = req.body
@@ -17,6 +17,9 @@ const addUser = async(req, res, next) => {
     }
 
 }
-module.exports = addUser
+const getUsers = async(req, res) => {
+    // code here
+}
+module.exports = {addUser, getUsers}
 
 
