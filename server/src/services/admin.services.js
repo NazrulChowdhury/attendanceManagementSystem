@@ -14,9 +14,13 @@ const inviteEmailExist = async(email)=>{
 const getAllUsers = async() => {
     return await User.find()
 }
+const updateUserRole = async(id, role)=>{
+    return await User.updateOne({_id : id}, {role})
+}
 
 module.exports = {
     createInviteEmail, 
     inviteEmailExist,
-    getAllUsers
+    getAllUsers,
+    updateUserRole
 }
