@@ -9,7 +9,7 @@ const SideNavigation = () => {
     const history = useHistory()
     return(
         <ProSidebar 
-        iconShape="round"
+        iconshape="round"
         width = "200px"
         >
         <SidebarHeader> 

@@ -37,3 +37,27 @@ body, html {
   color: white; 
   border-radius: 20px;
 } 
+.customButtonBlue {
+  background : #2c8b8d; 
+  color: white; 
+  border-radius: 20px;
+  border: none;
+} 
+.customButtonRed {
+  background : red; 
+  color: white; 
+  border-radius: 20px;
+  border: none;
+} 
+.flexRowCenter {
+  display: flex; 
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;    
+}
+.flexColumnCenter{
+  display : flex;
+  flex-direction: column;
+  justify-content : center;
+  align-items : center;
+}

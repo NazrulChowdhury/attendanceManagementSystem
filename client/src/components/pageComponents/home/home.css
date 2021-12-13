@@ -8,18 +8,6 @@
     display: flex;
     flex-grow: 3;
 }
-.flexRowCenter {
-    display: flex; 
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;    
-}
-.flexColumnCenter{
-    display : flex;
-    flex-direction: column;
-    justify-content : center;
-    align-items : center;
-}
 .todaysSessionsContainer{
  height: 95%;
  width: 95%;
@@ -65,6 +53,7 @@
 .ant-table-tbody {
  background : lightBlue;
   }
+
 .ant-table-thead{
  background: blue;
 }
