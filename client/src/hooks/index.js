@@ -14,3 +14,6 @@ export const useDeleteSession = async() => {
     return {deleteSession}
        
 }
+export const getUsers = async() => {
+    return await axios('/admin/getUsers',{withCredentials : true}) 
+}

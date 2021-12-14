@@ -45,3 +45,15 @@ export const getDateString = () =>{
   var year = dateObj.getUTCFullYear()
   return day + "/" + month + "/" + year
 }
+export const currentMonth = () => {
+  const month = new Date().getMonth()
+  return month
+}
+export const thisYear = () => {
+  const year = new Date().getFullYear()
+  return year
+}
+export const lastYear = () => {
+  const year = new Date().getFullYear()-1
+  return year
+}

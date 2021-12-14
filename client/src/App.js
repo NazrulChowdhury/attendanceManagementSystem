@@ -18,7 +18,7 @@ function App() {
     .then(response =>  setIsLoggedIn(response.data))
     .catch(err => setBroken(true))
   },[])
-
+  
   return (
       <div className = "appContainer">
         {isLoggedIn && 

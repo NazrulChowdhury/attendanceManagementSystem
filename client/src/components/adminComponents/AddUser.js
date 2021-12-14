@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useState } from "react"
-import { Form, Button, Modal } from "react-bootstrap"
+import { Form, Modal, Button } from "react-bootstrap"
 import { useMutation } from "react-query"
 import { message, Spin } from 'antd'
 
@@ -40,15 +40,7 @@ const AddUser =() => {
                 }
             }
           } 
-          style = {{
-            backgroundColor : "#6C09E2",
-            height: "50%",
-            width: "50%",
-            padding: "20px",
-            borderRadius: "5px",
-            color: "white"
-          }}
-          className="flexColumnCenter"
+          className="customForm flexColumnCenter"
         >
           <Form.Group  controlId="formBasicEmail" >
             <Form.Label>Add new User</Form.Label>
@@ -74,9 +66,9 @@ const AddUser =() => {
               />
             </div>
           </Form.Group>
-          <Button variant="primary" type="submit"
-          style = {{marginTop: "10px"}}
-          >
+          <Button variant="primary" type="submit" className="customButtonBlue"
+           style = {{marginTop: "10px"}}
+          >  {isLoading && <Spin />}
             Submit
           </Button>
         </Form>
@@ -89,7 +81,10 @@ const AddUser =() => {
               <p> <b>{response}</b></p>
             </Modal.Body>
             <Modal.Footer style = {{background: '#6C09E2'}}>
-              <Button variant="primary" onClick = {() => {setResponse(''); setEmail('')}}>Close</Button>
+              <Button variant="primary" className="customButtonBlue" 
+                onClick = {() => {setResponse(''); setEmail('')}}> 
+                Close
+              </Button>
             </Modal.Footer >
           </Modal.Dialog>
         </div>
@@ -102,7 +97,10 @@ const AddUser =() => {
           <p><b>{error.message}</b></p>
         </Modal.Body>
         <Modal.Footer style = {{background: '#6C09E2'}}>
-          <Button variant="primary" onClick = {() => {setResponse(''); setEmail(''); setError('')}}>Close</Button>
+          <Button variant="primary" className="customButtonBlue" 
+            onClick = {() => {setResponse(''); setEmail(''); setError('')}}>
+            Close
+          </Button>
         </Modal.Footer>
       </Modal.Dialog>             
     </div> 

@@ -61,3 +61,14 @@ body, html {
   justify-content : center;
   align-items : center;
 }
+.formSelectMenu{
+  margin-bottom: 10px;
+}
+.customForm{
+  background : #6C09E2;
+  height: 50%;
+  width: 50%;
+  padding: 20px;
+  border-radius: 5px;
+  color: white;
+}

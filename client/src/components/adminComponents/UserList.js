@@ -1,10 +1,10 @@
-import { Table, Button } from "antd";
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { useQuery } from "react-query";
-import UpdateUser from "./UpdateUser";
+import { Table, Button,spin, Spin } from "antd"
+import { useEffect, useState } from "react"
+import { useQuery } from "react-query"
+import { getUsers } from "../../hooks"
+import UpdateUser from "./UpdateUser"
 
-const UserList = (params) => {
+const UserList = (params) => { 
     const [page, setPage] = useState(1)
     const [users, setUsers] = useState(false)
     const [selectedUser, setSelectedUser] = useState(false)
@@ -26,9 +26,9 @@ const UserList = (params) => {
           title: 'Action',
           dataIndex: 'action',
         },
-      ];
+      ]
       
-      const data = []; 
+      const data = []
       if(users){
         users.map(user =>{
           const {_id, firstName, lastName,email,role} = user
@@ -39,8 +39,8 @@ const UserList = (params) => {
             role,
             action : 
               <Button 
-              className="customButton"
-              onClick={() => editUserInfo(_id)}
+                className="customButton"
+                onClick={() => editUserInfo(_id)}
               > 
                  Edit 
               </Button>
@@ -48,10 +48,7 @@ const UserList = (params) => {
         })
       } 
   
-    const getUsers = async() => {
-      return await axios('/admin/getUsers',{withCredentials : true})
-    }
-    const {loading, refetch} = useQuery('getUsers', getUsers,{
+    const {loading} = useQuery('getUsers', getUsers,{ 
       onSuccess : (data) => setUsers(data.data)
     })
     const editUserInfo = (id) =>  {
@@ -59,28 +56,30 @@ const UserList = (params) => {
       setShowModal(true)
     }
 
-    useEffect(() => refetch, [])
       return ( 
         <div className="flexRowCenter" style={{height: '95%', width: '100%', marginTop: '10px' }}>
-          <div>
-            <Table 
-              dataSource={data} 
-              columns={columns} 
-              loading = {loading}
-              pagination = {{
-                  current: page,
-                  pageSize : 9,
-                  onChange: (page)=> setPage(page)
-              }}
-            />
-          </div>
-          <div className="flexRowCenter">
-            <UpdateUser 
-              {...selectedUser}
-              showModal={showModal}
-              setShowModal={setShowModal}
-            />
-          </div> 
+          {loading && <div> <Spin size="large" /> </div>}
+          {!loading && 
+            <div>
+              <Table 
+                dataSource={data} 
+                columns={columns} 
+                pagination = {{
+                    current: page,
+                    pageSize : 9,
+                    onChange: (page)=> setPage(page)
+                }}
+              /> 
+            </div>
+          }
+            <div className="flexRowCenter">
+              <UpdateUser 
+                {...selectedUser}
+                showModal={showModal}
+                setShowModal={setShowModal}
+              />
+            </div> 
+          
         </div>
       )
 }
