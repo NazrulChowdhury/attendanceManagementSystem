@@ -17,7 +17,6 @@ const getAllUsers = async() => {
 const updateUserRole = async(id, role)=>{
     return await User.updateOne({_id : id}, {role})
 }
-
 module.exports = {
     createInviteEmail, 
     inviteEmailExist,

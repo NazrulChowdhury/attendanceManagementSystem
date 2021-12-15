@@ -1,5 +1,6 @@
 const UserSession = require("../models/session.model")
 const ActiveSession = require('../models/activeSession.model')
+const { getDateString } = require("../helper/date")
 
 const createSession = async(sessionObj) => {
     return await new UserSession(sessionObj).save()
@@ -26,6 +27,21 @@ const deleteActiveSession = async(userId) =>{
 const getTodaysSessions = async(date, userId) =>{
     return await UserSession.find({date : date, user : userId})
 }
+const getSessionTotal = async(sessions)=>{
+    const dateReducedSessions = sessions.reduce((acc, val) => {
+        const found = acc.find((findVal) => val.date === findVal.date)
+        if (!found) acc.push(val)
+        else found.sessionLength += val.sessionLength
+        return acc
+      }, [])
+    const combinedSessionsArray = dateReducedSessions.map((session) => {       
+        return {
+            value: session.sessionLength,
+            day: getDateString(session.date) 
+        }
+    })
+    return combinedSessionsArray
+}
 module.exports = { 
     createSession, 
     getUserSessions, 
@@ -33,5 +49,6 @@ module.exports = {
     createActiveSession,
     getActiveSession,
     deleteActiveSession,
-    getTodaysSessions
+    getTodaysSessions,
+    getSessionTotal
 }

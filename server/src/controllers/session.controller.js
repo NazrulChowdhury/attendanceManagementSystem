@@ -84,19 +84,8 @@ const getSessionHeatMap = async(req,res,next) =>{
     const dateTill = getTomorrow(req.params.dateTill)
     try{
         const sessions = await sessionService.getUserSessions(dateFrom, dateTill, req.user)
-        const dateReducedSessions = sessions.reduce((acc, val) => {
-            const found = acc.find((findval) => val.date === findval.date)
-            if (!found) acc.push(val)
-            else found.sessionLength += val.sessionLength
-            return acc
-          }, [])
-        const heatMapSessionsArray = dateReducedSessions.map((session) => {       
-            return {
-                value: session.sessionLength,
-                day: getDateString(session.date)
-            }
-        })
-        res.send(heatMapSessionsArray)
+        const processedSessions = await sessionService.getSessionTotal(sessions)
+        res.send(processedSessions)
     } catch(err){
         next(err)
     }

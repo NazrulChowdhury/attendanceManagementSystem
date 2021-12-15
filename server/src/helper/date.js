@@ -13,4 +13,17 @@ const getDateString = (date) =>{
     const dateObj = new Date(date)
     return dateObj.toISOString().slice(0, 10)
 }
-module.exports = {getTomorrow, stripTime, getDateString}
+const firstDayOfTheMonth = (year, month)=>{
+   return new Date(year, month, 1)
+}
+const lastDayOfTheMonth = (year,month) => {
+    if(month == 11){ return new Date(year, month, 31)}
+    return  new Date(year, month +1, 0)
+}
+module.exports = {
+    getTomorrow, 
+    stripTime, 
+    getDateString,
+    firstDayOfTheMonth,
+    lastDayOfTheMonth
+}
