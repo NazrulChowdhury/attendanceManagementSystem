@@ -1,4 +1,5 @@
-const { firstDayOfTheMonth, lastDayOfTheMonth, getTomorrow } = require('../helper/date')
+const moment = require('moment')
+
 const ApiError = require( '../helper/error')
 const adminService = require('../services/admin.services')
 const { getUserSessions, getSessionTotal } = require('../services/session.services')
@@ -38,10 +39,12 @@ const updateUser = async(req, res, next)=>{
 }
 const getSelectedSessions = async(req, res,next)=>{ 
     const {id, month, year} = req.body
-    const dateFrom = + new Date(firstDayOfTheMonth(year, month))
-    const dateTill = getTomorrow(lastDayOfTheMonth(year,month))
+    const dateFrom = moment([year, month])
+    const dateTill =  moment(dateFrom).endOf('month')
+    const start = +new Date(dateFrom.toDate())
+    const end = +new Date(dateTill.toDate())
     try{
-        const sessions = await getUserSessions(dateFrom, dateTill, id)
+        const sessions = await getUserSessions(start, end, id)
         const sessionTotal = await getSessionTotal(sessions)
         !sessionTotal.length ? next(ApiError.badRequest(401,'This user has no session for this period!')) :
         res.send(sessionTotal)
@@ -49,6 +52,7 @@ const getSelectedSessions = async(req, res,next)=>{
         next(error)
     }
 }
+
 module.exports = {
     addUser, 
     getUsers, 

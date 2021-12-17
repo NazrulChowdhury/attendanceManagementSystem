@@ -93,8 +93,12 @@ const getSessionHeatMap = async(req,res,next) =>{
 }
 
 module.exports = { 
-    addSession, deleteSession, 
-    getSessions, startSession, 
-    stopSession, getActiveSession,
-    todaysSessions, getSessionHeatMap
+    addSession, 
+    deleteSession, 
+    getSessions, 
+    startSession, 
+    stopSession, 
+    getActiveSession,
+    todaysSessions, 
+    getSessionHeatMap
 }
