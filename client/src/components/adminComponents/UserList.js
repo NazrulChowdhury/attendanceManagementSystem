@@ -1,4 +1,4 @@
-import { Table, Button,spin, Spin } from "antd"
+import { Table, Button,Spin } from "antd"
 import { useEffect, useState } from "react"
 import { useQuery } from "react-query"
 import { getUsers } from "../../hooks"
@@ -58,8 +58,8 @@ const UserList = (params) => {
 
       return ( 
         <div className="flexRowCenter" style={{height: '95%', width: '100%', marginTop: '10px' }}>
-          {loading && <div> <Spin size="large" /> </div>}
-          {!loading && 
+          {loading || !data.length  && <div> <Spin size="large" /> </div>}
+          {!loading && data.length && 
             <div>
               <Table 
                 dataSource={data} 

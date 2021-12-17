@@ -6,7 +6,7 @@ import AddUser from "../adminComponents/AddUser"
 import Home from "../pageComponents/home/Home"
 import Logout from "../authComponents/Logout"
 import UserList from '../adminComponents/UserList'
-import UserSelector from "../adminComponents/UserSelector"
+import UsersSessionRecord from "../adminComponents/UsersSessionRecord"
 
 const PageContainer = () => {
     return(
@@ -18,7 +18,7 @@ const PageContainer = () => {
                 <Route exact path = '/login' component = {Login} />
                 <Route exact path = '/logout' component = {Logout} />
                 <Route exact path = '/addUser' component = {AddUser} />
-                <Route exact path = '/userRecords' component={UserSelector} />
+                <Route exact path = '/userRecords' component={UsersSessionRecord} />
                 <Route exact path = '/manageUsers' component={UserList} /> 
                 <Route exact path = '/authFailure' component = {AuthFailure} />
                 <Route exact path = '/broken'  />

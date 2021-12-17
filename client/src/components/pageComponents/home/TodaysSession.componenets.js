@@ -51,6 +51,7 @@ const TodaysSessions = (params) => {
                     {sessions.length !== 0 && sessions.map(session => { 
                         return(
                             <SessionCard 
+                            key = {session.id}
                             session = {session}
                             triggerDeleteSession = {triggerDeleteSession}
                             />   

@@ -7,8 +7,7 @@ export const formatSession = (data) => {
         date : item.date,
         startTime : moment(item.startTime).format("HH:mm"),
         endTime : moment(item.endTime).format("HH:mm"),
-       // sessionLength : moment.utc(item.sessionLength).format("hh:mm")
-       sessionLength : moment.utc(item.sessionLength).format("HH:mm")
+        sessionLength : moment.utc(item.sessionLength).format("HH:mm")
       }
   })
 }
@@ -56,4 +55,15 @@ export const thisYear = () => {
 export const lastYear = () => {
   const year = new Date().getFullYear()-1
   return year
+}
+export const msToTime = (duration) =>{
+  const result = Math.floor(duration/(1000*60*60)) 
+   + " hours " + Math.floor(duration/(1000*60))%60 + " Minutes"
+   return result
+}
+export const formatTotalTime = (sessions) => {
+  const totalTime = sessions.reduce((acc,obj) => acc += obj.value, 0)
+  //const formattedTotal = moment.utc(totalTime).format("HH:mm")
+  const formattedTotal = msToTime(totalTime)
+  return formattedTotal
 }

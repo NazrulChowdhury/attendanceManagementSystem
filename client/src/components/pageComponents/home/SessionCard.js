@@ -8,7 +8,6 @@ const SessionCard = ({session,triggerDeleteSession}) => {
         <Card className="customCard">
             <Card.Body 
             className="customCardBody"
-            key = {session.id}
             onClick = {() => setShowDeleteButton(!showDeleteButton) }
             >
                 <Card.Title>Duration {session.sessionLength} hh:mm</Card.Title>
