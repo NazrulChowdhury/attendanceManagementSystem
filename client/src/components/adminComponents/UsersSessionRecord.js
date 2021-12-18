@@ -9,6 +9,7 @@ import SessionTable from "./SessionTable"
 import UserDetails from "./UserDetails"
 import { IoArrowBackCircle } from "react-icons/io5"
 import UserSelector from "./UserSelector"
+import DownloadTimeSheet from "./DownloadTimeSheet"
 
 const UsersSessionRecord = () => { 
 
@@ -84,11 +85,19 @@ const UsersSessionRecord = () => {
                             month = {months[selectedMonth]}
                             sessions = {sessions}
                         />
-                        <div style={{marginTop: '10px'}}>
-                            <IoArrowBackCircle 
-                                size={'50px'}
-                                onClick={()=> setSessions(false)}
-                            />
+                        <div style = {{marginTop: '10px'}} className="flexRowCenterEvenly">
+                            <div className="hoverBlue">
+                                <IoArrowBackCircle 
+                                    size={'50px'}
+                                    onClick={()=> setSessions(false)}
+                                />
+                            </div>
+                            <div className="hoverBlue">
+                                <DownloadTimeSheet 
+                                  sessions = {sessions}
+                                  id = {selectedUser}
+                                />    
+                            </div>                                  
                         </div>
                     </div>
                     <div style = {{marginTop: '50px', width:'40%'}} >

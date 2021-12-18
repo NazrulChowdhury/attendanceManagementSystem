@@ -1,10 +1,12 @@
-import { Table, Button,Spin } from "antd"
-import { useState } from "react"
+import { Table} from "antd"
+import { useEffect, useState } from "react"
+import { useGlobalContext } from "../../context/context"
 import { msToTime } from "../../helper/time"
 
 const SessionTable = ({sessions}) => {
-
   const [page, setPage] = useState(1) 
+  const {setTimeSheetColumn} = useGlobalContext()
+
   const formattedSessions = 
     sessions.reduce((acc, obj)=> {
       acc.push({
@@ -25,7 +27,8 @@ const SessionTable = ({sessions}) => {
       dataIndex: 'value',
     }
   ]
-
+  useEffect(() => setTimeSheetColumn(columns),[])
+  
   return(
     <>
       <Table 
@@ -42,3 +45,5 @@ const SessionTable = ({sessions}) => {
 
 }
 export default SessionTable
+
+

@@ -6,6 +6,7 @@
     "@nivo/calendar": "^0.74.0",
     "@nivo/core": "^0.74.0",
     "antd": "^4.16.13",
+    "antd-table-saveas-excel": "^2.1.4",
     "axios": "^0.22.0",
     "bootstrap": "^5.1.1",
     "mod-session-calendar": "git+https://github.com/NazrulChowdhury/revo-calendar.git",

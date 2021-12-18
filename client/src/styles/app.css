@@ -88,3 +88,6 @@ body, html {
   border-radius: 5px; 
   color:white ;
 }
+.hoverBlue:hover {
+  color: #05E9EE;
+}
