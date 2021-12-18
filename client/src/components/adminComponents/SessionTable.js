@@ -5,7 +5,7 @@ import { msToTime } from "../../helper/time"
 
 const SessionTable = ({sessions}) => {
   const [page, setPage] = useState(1) 
-  const {setTimeSheetColumn} = useGlobalContext()
+  const {setTimeSheetColumn, setFormattedSessions} = useGlobalContext()
 
   const formattedSessions = 
     sessions.reduce((acc, obj)=> {
@@ -27,7 +27,10 @@ const SessionTable = ({sessions}) => {
       dataIndex: 'value',
     }
   ]
-  useEffect(() => setTimeSheetColumn(columns),[])
+  useEffect(() => {
+    setTimeSheetColumn(columns)
+    setFormattedSessions(formattedSessions)
+  },[])
   
   return(
     <>

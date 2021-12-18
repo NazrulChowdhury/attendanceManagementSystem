@@ -9,11 +9,12 @@ const GlobalContextProvider = (props) => {
 
    const [isLoggedIn, setIsLoggedIn] = useState(false)
    const [timeSheetColumn, setTimeSheetColumn] = useState(false)
-
+   const [formattedSessions, setFormattedSessions] = useState(false)
 
     const value = { 
         isLoggedIn, setIsLoggedIn,
-        timeSheetColumn, setTimeSheetColumn
+        timeSheetColumn, setTimeSheetColumn,
+        formattedSessions, setFormattedSessions
     }
     
     return(

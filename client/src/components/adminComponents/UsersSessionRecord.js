@@ -94,8 +94,8 @@ const UsersSessionRecord = () => {
                             </div>
                             <div className="hoverBlue">
                                 <DownloadTimeSheet 
-                                  sessions = {sessions}
                                   id = {selectedUser}
+                                  month = {months[selectedMonth]}
                                 />    
                             </div>                                  
                         </div>
