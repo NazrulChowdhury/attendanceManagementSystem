@@ -52,13 +52,23 @@ const getSelectedSessions = async(req, res,next)=>{
         next(error)
     }
 }
+const getUserFullName = async(req, res, next)=>{
+    const id = req.params.id
+    try{
+        const userFullName = await adminService.getUserFullName(id)
+        !userFullName ? next(ApiError.badRequest(409, 'user not found!')) : res.send(userFullName)
+    }catch(error){
+        next(error)
+    }
+}
 
 module.exports = {
     addUser, 
     getUsers, 
     getUsers, 
     updateUser,
-    getSelectedSessions
+    getSelectedSessions,
+    getUserFullName
 }
 
 

@@ -17,9 +17,14 @@ const getAllUsers = async() => {
 const updateUserRole = async(id, role)=>{
     return await User.updateOne({_id : id}, {role})
 }
+const getUserFullName = async(id)=>{
+    const user = await User.findById(id)
+    return `${user.firstName}-${user.lastName}`
+}
 module.exports = {
     createInviteEmail, 
     inviteEmailExist,
     getAllUsers,
-    updateUserRole
+    updateUserRole,
+    getUserFullName
 }
