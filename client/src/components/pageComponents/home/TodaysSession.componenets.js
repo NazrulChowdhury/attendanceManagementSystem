@@ -13,7 +13,7 @@ const TodaysSessions = (params) => {
 
     const getTodaysSessions = async() => {
         const date = +new Date()
-        return await axios(`/session/todaysSessions/${date}`,{withCredentials : true})
+        return await axios(`/api/session/todaysSessions/${date}`,{withCredentials : true})
     }
     const {data} = useQuery('getTodaysSessions',getTodaysSessions,{
         onSuccess: (data) => {
@@ -24,7 +24,7 @@ const TodaysSessions = (params) => {
     const deleteSession = async(id) => {
         return await axios({
           method : 'delete',
-          url : '/session/deleteSession',
+          url : '/api/session/deleteSession',
           data : {id}
         })
       }
@@ -65,45 +65,3 @@ const TodaysSessions = (params) => {
     )
 }
 export default TodaysSessions
-
-            {/* <div> 
-                {sessions.length !== 0 && sessions.map(session => { {<p>getting called here</p>}
-                        <Card style={{  background : '#6C09E2',overflowY: 'scroll'}}>
-                            <Card.Body 
-                            key = {session.id}
-                            style ={{background : 'lightBlue',margin: '20px', borderRadius : '5px'}}
-                            onClick = {() => setShowDeleteButton(!showDeleteButton) }>
-                                <Card.Title>Duration {session.sessionLength} hh:mm</Card.Title>
-                                <Card.Text>
-                                Start Time: {session.startTime}  <br />
-                                Stop Time: {session.endTime} 
-                                </Card.Text>
-                                {showDeleteButton && 
-                                    <Button style = {{background : '#6C09E2', color: 'white', borderRadius: '20px'}}
-                                    onClick = {() => triggerDeleteSession(session.id)}
-                                    >Delete</Button>}
-                            </Card.Body>           
-                        </Card>                 
-                })}
-            </div>           */}
-
-
-        // <Card style={{  background : '#6C09E2',overflowY: 'scroll'}}>
-        //     { sessions.length > 0 && sessions.map(session =>{ 
-        //     return ( 
-        //     <Card.Body 
-        //     key = {session.id}
-        //     style ={{background : 'lightBlue',margin: '20px', borderRadius : '5px'}}
-        //     onClick = {() => setShowDeleteButton(!showDeleteButton) }>
-        //         <Card.Title>Duration {session.sessionLength} hh:mm</Card.Title>
-        //         <Card.Text>
-        //         Start Time: {session.startTime}  <br />
-        //         Stop Time: {session.endTime} 
-        //         </Card.Text>
-        //         {showDeleteButton && 
-        //             <Button style = {{background : '#6C09E2', color: 'white', borderRadius: '20px'}}
-        //             onClick = {() => triggerDeleteSession(session.id)}
-        //             >Delete</Button>}
-        //     </Card.Body> )
-        // })}            
-        // </Card>

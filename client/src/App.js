@@ -14,7 +14,7 @@ function App() {
   const [broken, setBroken] = useState(false)
 
   useEffect(() => {
-    axios.get('/auth/getUserStatus',{withCredentials : true})
+    axios.get('/api/auth/getUserStatus',{withCredentials : true})
     .then(response =>  setIsLoggedIn(response.data))
     .catch(err => setBroken(true))
   },[])

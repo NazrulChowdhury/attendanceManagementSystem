@@ -11,7 +11,7 @@ const DownloadTimeSheet = ({id, month}) => {
     const {timeSheetColumn, formattedSessions} = useGlobalContext() 
     const [fullName, setFullName] = useState(false)
     const getUserName = async() => {
-        return await axios(`admin/getUserFullName/${id}`, {withCredentials: true})
+        return await axios(`/api/admin/getUserFullName/${id}`, {withCredentials: true})
     }
     const {refetch} = useQuery('getUserName',getUserName, {
         enabled: false,

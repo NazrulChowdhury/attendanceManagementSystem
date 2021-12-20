@@ -13,7 +13,7 @@ const AddUser =() => {
     const addUser = async() => { 
       return await axios({
       method : 'post',
-      url : '/admin/addUser',
+      url : 'api/admin/addUser',
       data : {email, role}
     })}
 

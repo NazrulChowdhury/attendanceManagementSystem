@@ -7,7 +7,7 @@ const NivoCalender = () => {
     const dateFrom = +new Date(new Date().getFullYear(), 0, 1)
     const dateTill = +new Date(new Date().getFullYear(), 11, 31)
     const getHeatMap = async() => {
-        return await axios.get(`session/getSessionHeatMap/${dateFrom}/${dateTill}`,{withCredentials: true})
+        return await axios.get(`/api/session/getSessionHeatMap/${dateFrom}/${dateTill}`,{withCredentials: true})
     }
     const {isLoading} = useQuery('getHeatMap', getHeatMap,{
         onSuccess : (data) => { setHeatMapData(data.data)}

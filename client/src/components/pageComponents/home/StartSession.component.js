@@ -23,7 +23,7 @@ const StartSession = (params) => {
         return await axios({
             method : 'post',
             withCredentials : true,
-            url : '/session/startSession',
+            url : '/api/session/startSession',
             data : {startTime : +new Date()}
         })
     }
@@ -38,7 +38,7 @@ const StartSession = (params) => {
         }
     })
     const getActiveSession = async() => {
-        return await axios('/session/getActiveSession', {withCredentials : true})
+        return await axios('/api/session/getActiveSession', {withCredentials : true})
     }
     const {refetch : fetchActiveSession} = useQuery('getActiveSession', getActiveSession,{
         enabled : false,
@@ -53,7 +53,7 @@ const StartSession = (params) => {
     const stopSession = async() => {
         return await axios({
             method : 'post',
-            url : '/session/stopSession',
+            url : '/api/session/stopSession',
             withCredentials : true,
             data : {
                 sessionLength : +new Date() - timeFrom, 

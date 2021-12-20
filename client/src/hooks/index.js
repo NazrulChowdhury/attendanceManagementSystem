@@ -7,7 +7,7 @@ export const useDeleteSession = async() => {
             return await axios({
                 method : 'delete',
                 withCredentials : true,
-                url : '/session/deleteSession',
+                url : '/api/session/deleteSession',
                 data : {id}
             })
         } )
@@ -15,5 +15,5 @@ export const useDeleteSession = async() => {
        
 }
 export const getUsers = async() => {
-    return await axios('/admin/getUsers',{withCredentials : true}) 
+    return await axios('/api/admin/getUsers',{withCredentials : true}) 
 }

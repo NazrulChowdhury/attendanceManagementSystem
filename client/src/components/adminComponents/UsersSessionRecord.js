@@ -22,7 +22,7 @@ const UsersSessionRecord = () => {
     "August","September","October","November","December"]
 
     const getMonthlySessions = async() => {
-        return axios('/admin/getSelectedUserSessions',{
+        return axios('/api/admin/getSelectedUserSessions',{
             method : 'post',
             withCredentials: true,
             data : {

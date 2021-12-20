@@ -28,19 +28,3 @@ const Home = () => {
     )
 }
 export default Home
-
-{/* <>
-<div className = "firstRow" >
-    <div className = "startSessionContainer">
-       <StartSession />
-    </div>
-    <div className = "todaysSessionsContainer">
-       <TodaysSessions />
-    </div>
-</div>
-<div className = "secondRow">
-    <div id = "heatMapContainer"> 
-       <NivoCalender />
-    </div>
-</div>
-</> */}

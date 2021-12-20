@@ -14,7 +14,7 @@ const UpdateUser = ({_id, firstName, lastName, email, role,showModal, setShowMod
         return await axios({
             method: 'post',
             withCredentials: true,
-            url : '/admin/updateUser',
+            url : 'api/admin/updateUser',
             data : {
                 id: _id,
                 role: updatedRole

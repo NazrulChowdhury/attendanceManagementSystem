@@ -5,7 +5,7 @@ import { Spin, Space } from 'antd'
 
 const Logout = ()=>{
     const {setIsLoggedIn} = useGlobalContext()
-    const logOutHandler = async() => await axios(`/auth/logout`, {withCredentials : true})
+    const logOutHandler = async() => await axios(`api/auth/logout`, {withCredentials : true})
     const {isLoding} = useQuery('logout', logOutHandler,{
         onSuccess : (data) => setIsLoggedIn(data.data)
     })
