@@ -44,36 +44,37 @@ const UsersSessionRecord = () => {
     useEffect(() => refetch(),[])
     if(loading){
         return (
-            <div className = "flexRowCenter fullPageDiv"> 
-              <Spin size="large"/>
-            </div>
+            <div className = "flexRowCenter fullPageDiv">  <Spin size="large"/></div>
         )
     } 
     return (
         <div className="fullPageDiv">
             {!sessions && 
-                <div  className = "flexRowCenter" style={{height: '80%', width: '90%'}}>        
-                    <Form 
-                        onSubmit = {
-                            (e) => {
-                                e.preventDefault()
-                                if(!selectedUser || selectedUser == '0'){                       
-                                    message.error('Please select a user!')
-                                } else{
-                                    mutateAsync()
+                <div  className = "flexRowCenter" style={{height: '80%', width: '90%'}}>   
+                    {!users && <div className = "flexRowCenter fullPageDiv">  <Spin size="large"/> </div>}   
+                    {users &&
+                        <Form 
+                            onSubmit = {
+                                (e) => {
+                                    e.preventDefault()
+                                    if(!selectedUser || selectedUser == '0'){                       
+                                        message.error('Please select a user!')
+                                    } else{
+                                        mutateAsync()
+                                    }
                                 }
-                            }
-                        } 
-                        className="customForm flexColumnCenter"
-                    >   
-                        <div>
-                            <UserSelector 
-                                users = {users} months={months} setSelectedUser={setSelectedUser}
-                                setSelectedMonth={setSelectedMonth} setSelectedYear={setSelectedYear}
-                                isLoading = {isLoading}
-                            />
-                        </div>                
-                    </Form>
+                            } 
+                            className="customForm flexColumnCenter"
+                        >   
+                            <div>
+                                <UserSelector 
+                                    users = {users} months={months} setSelectedUser={setSelectedUser}
+                                    setSelectedMonth={setSelectedMonth} setSelectedYear={setSelectedYear}
+                                    isLoading = {isLoading}
+                                />
+                            </div>                
+                        </Form>
+                    } 
                 </div>
             }
            {sessions &&

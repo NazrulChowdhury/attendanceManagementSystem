@@ -3,6 +3,7 @@ import axios from "axios"
 import { useState } from "react"
 import {Modal, Form} from "react-bootstrap"
 import { useMutation, useQueryClient } from "react-query"
+import RemoveUser from "./RemoveUser"
 
 
 const UpdateUser = ({_id, firstName, lastName, email, role,showModal, setShowModal}) => {
@@ -35,7 +36,7 @@ const UpdateUser = ({_id, firstName, lastName, email, role,showModal, setShowMod
 
     return(
         <>
-            <Modal show={showModal} onHide={handleClose} style = {{ color : '#05E9EE'}}>
+            <Modal show={showModal} onHide={handleClose} style = {{ color : 'lightBlue'}}>
             <Modal.Header closeButton style = {{background : '#6C09E2'}}>
                 <Modal.Title >Update User Info</Modal.Title>
             </Modal.Header>
@@ -45,30 +46,36 @@ const UpdateUser = ({_id, firstName, lastName, email, role,showModal, setShowMod
                 Email : {email} <br />
                 Current Role : {role} <br /> <br /> <br />
                 
-                <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly'}}
-                     onChange={(e)=> setUpdatedRole(e.target.value)}
-                >    <p>Update Role : </p>
-                        <Form.Check
-                            type="radio"
-                            label="admin"
-                            name = "role"
-                            value = "admin"
-                        />
-                        <Form.Check
-                            type="radio"
-                            label="user"
-                            name = "role"
-                            value = "user"
-                        />
-                    </div>
+                <div
+                    className="flexRowCenterEvenly"
+                    onChange={(e)=> setUpdatedRole(e.target.value)}
+                > 
+                   <p>Update Role : </p>
+                    <Form.Check
+                        type="radio"
+                        label="admin"
+                        name = "role"
+                        value = "admin"
+                    />
+                    <Form.Check
+                        type="radio"
+                        label="user"
+                        name = "role"
+                        value = "user"
+                    /> 
+                </div>
             </Modal.Body>
             <Modal.Footer style = {{background : '#6C09E2'}}>
+                <RemoveUser 
+                   id = {_id} 
+                   setShowModal = {setShowModal}
+                /> 
                 <Button className="customButtonRed" onClick={handleClose}>
-                   Close
+                  Close
                 </Button>
                 <Button className="customButtonBlue" onClick={mutateAsync}  >
                     {isLoading && <Spin />}
-                Save Changes
+                  Save Changes
                 </Button>
             </Modal.Footer>
             </Modal>

@@ -1,5 +1,5 @@
 import { Table, Button,Spin } from "antd"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useQuery } from "react-query"
 import { getUsers } from "../../hooks"
 import UpdateUser from "./UpdateUser"
