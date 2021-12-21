@@ -70,35 +70,39 @@ const Calendar = ()=> {
   },[selectedDate])
 
   return (
-    <div style = {{ height: '100%' , width: '100%'}}>
-      { showCalendar && !isLoading && !isFetching &&
-        <div style = {{ height: '100%' , width: '100%'}}>  
-          <RevoCalendar events = {events} primaryColor ='#6C09E2'
-            allowDeleteEvent = {true}
-            deleteEvent = {deleteEvent}
-            allowAddEvent ={true}
-            addEvent={addEvent}
-            dateSelected = {dateSelected}
-            showAddEventModal = {true}
-          
-          />
-        </div> 
-      }
-      {showModal && 
-        <div className="flexRowCenter">
-          <AddSession 
-            setShowModal={setShowModal}
-            setShowCalendar = {setShowCalendar}
-            sessionDate = {sessionDate}
-          />
-        </div>
-      }
-      {isLoading || isFetching && 
-        <div className="fullPageDiv flexRowCenter">
-          <Spin size="large" />
-        </div>
-      }
-    </div>
+    <>
+      <div className="fullPageDiv" style={{position: 'relative'}}>
+        { showCalendar && 
+          <div className="fullPageDiv">  
+            <RevoCalendar events = {events} primaryColor ='#6C09E2'
+              allowDeleteEvent = {true}
+              deleteEvent = {deleteEvent}
+              allowAddEvent ={true}
+              addEvent={addEvent}
+              dateSelected = {dateSelected}
+              showAddEventModal = {true}
+            
+            />
+          </div> 
+        }
+        {showModal && 
+          <div className="flexRowCenter">
+            <AddSession 
+              setShowModal={setShowModal}
+              setShowCalendar = {setShowCalendar}
+              sessionDate = {sessionDate}
+            />
+          </div>
+        }
+        {isLoading || isFetching && 
+          <div className="fullPageDiv fullParentOverlay" >
+            <div className=" fullPageDiv flexRowCenter">
+              <Spin size="large" />
+            </div>
+          </div>
+        }
+      </div>
+    </>
   )
 }
 
