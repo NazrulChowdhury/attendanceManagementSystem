@@ -39,7 +39,7 @@ const NivoCalender = () => {
                     from="2021-01-01"
                     to="2021-12-31"
                     emptyColor="#555354"
-                    colors={[ '#05E9EE', '#22D1D5', '#39BBBE', '#49A9AB' ]}
+                    colors={[ '#22D1D5','#39BBBE','#49A9AB','#05E9EE']}
                     margin={{ top: 40, right: 40, bottom: 40, left: 40 }}
                     yearSpacing={40}
                     monthBorderColor="#6C09E2"
