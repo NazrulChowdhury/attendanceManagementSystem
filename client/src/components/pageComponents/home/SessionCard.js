@@ -1,9 +1,31 @@
 import Card from "react-bootstrap/Card"
 import { Button } from 'antd'
 import { useState } from "react"
+import axios from "axios"
+import { useMutation } from "react-query"
+import { message, Spin } from 'antd'
+import { useGlobalContext } from "../../../context/context"
 
-const SessionCard = ({session,triggerDeleteSession}) => {
+const SessionCard = ({session, id}) => {
     const [showDeleteButton, setShowDeleteButton] = useState(false)
+    const { refetchSessions, refetchHeatMap } = useGlobalContext()
+  
+    const deleteSession = async(id) => { 
+        return await axios({
+          method : 'delete',
+          url : '/api/session/deleteSession',
+          data : {id}
+        })
+      }
+    const {isLoading, mutateAsync} = useMutation(deleteSession, { 
+        mutationKey : 'deleteSession',
+        onSuccess : () => {
+          message.success('SUCCESS!')
+          refetchSessions()
+          refetchHeatMap()
+        },
+        onError : (error) => message.error(`Error! ${error}`) 
+      })
     return (
         <Card className="customCard">
             <Card.Body 
@@ -18,8 +40,11 @@ const SessionCard = ({session,triggerDeleteSession}) => {
                 {showDeleteButton && 
                     <div className="flexRowCenter">
                         <Button className="customButton"
-                        onClick = {() => triggerDeleteSession(session.id)}
-                        >Delete</Button>
+                            onClick = {() => mutateAsync(id)}
+                        >
+                            {isLoading && <Spin />}
+                            Delete
+                        </Button>
                     </div>
                 }
             </Card.Body>           

@@ -10,11 +10,15 @@ const GlobalContextProvider = (props) => {
    const [isLoggedIn, setIsLoggedIn] = useState(false)
    const [timeSheetColumn, setTimeSheetColumn] = useState(false)
    const [formattedSessions, setFormattedSessions] = useState(false)
+   const [refetchSessions, setRefetchSession] = useState(false)
+   const [refetchHeatMap, setRefetchHeatmap] = useState(false)
 
     const value = { 
         isLoggedIn, setIsLoggedIn,
         timeSheetColumn, setTimeSheetColumn,
-        formattedSessions, setFormattedSessions
+        formattedSessions, setFormattedSessions,
+        refetchSessions, setRefetchSession,
+        refetchHeatMap, setRefetchHeatmap
     }
     
     return(

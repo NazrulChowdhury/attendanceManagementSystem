@@ -41,7 +41,7 @@ const Calendar = ()=> {
     const {dateFrom, dateTill} = dateRange
     return axios(`/api/session/getSessions/${dateFrom}/${dateTill}`,{withCredentials: true}) 
   }
-  const {isLoading} = useQuery(['fetchSessions', dateRange], fetchSessions,{
+  const {isLoading, isFetching} = useQuery(['fetchSessions', dateRange], fetchSessions,{
     enabled : !!dateRange,
     onSuccess : (data) => {
       setEvents(formatSession(data.data))
@@ -55,7 +55,7 @@ const Calendar = ()=> {
       data : {id}
     })
   }
-  const {isLoading: loading, mutateAsync} = useMutation(deleteSession, {
+  const {mutateAsync} = useMutation(deleteSession, {
     mutationKey : 'deleteSession',
     onSuccess : () => {
       message.success('SUCCESS!')
@@ -71,7 +71,7 @@ const Calendar = ()=> {
 
   return (
     <div style = {{ height: '100%' , width: '100%'}}>
-      { showCalendar && 
+      { showCalendar && !isLoading && !isFetching &&
         <div style = {{ height: '100%' , width: '100%'}}>  
           <RevoCalendar events = {events} primaryColor ='#6C09E2'
             allowDeleteEvent = {true}
@@ -91,6 +91,11 @@ const Calendar = ()=> {
             setShowCalendar = {setShowCalendar}
             sessionDate = {sessionDate}
           />
+        </div>
+      }
+      {isLoading || isFetching && 
+        <div className="fullPageDiv flexRowCenter">
+          <Spin size="large" />
         </div>
       }
     </div>

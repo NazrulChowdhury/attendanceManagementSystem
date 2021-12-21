@@ -16,7 +16,7 @@ const Home = () => {
                 </div>
                 <div className = "flexRowCenter"></div>
                 <div id = "heatMapContainer"> 
-                   <NivoCalender />
+                   <NivoCalender /> 
                 </div>
             </div>
             <div className = "secondColumn flexRowCenter">

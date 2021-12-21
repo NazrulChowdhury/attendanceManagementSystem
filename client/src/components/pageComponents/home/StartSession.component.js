@@ -1,15 +1,17 @@
 import Button from 'react-bootstrap/Button'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import { QueryClient, useMutation, useQuery, useQueryClient } from 'react-query'
-import { message, Spin } from 'antd'
+import { useMutation, useQuery } from 'react-query'
+import { message } from 'antd'
 import ReactTimerStopwatch from './timer/ReactTimerStopwatch'
+import { useGlobalContext } from '../../../context/context'
 
 const StartSession = (params) => {
     const [timeFrom, setTimeFrom] = useState(false)
     const [isOn, setIsOn] = useState(false)
     const [sessionActivated, setSessionActivated] = useState(false)
-    const queryClient = useQueryClient() 
+    const { refetchSessions, refetchHeatMap } = useGlobalContext()
+
     const startSessionHandler = () => {
     setIsOn(true)
     setTimeFrom(+new Date())
@@ -65,7 +67,8 @@ const StartSession = (params) => {
         onSuccess : (data) => {
             message.success(data.data) 
             setSessionActivated(false)
-            queryClient.invalidateQueries('getTodaysSessions')
+            refetchSessions()
+            refetchHeatMap()
         },
         onError : (error) => { message.error(`Error! ${error}`)}
     })
