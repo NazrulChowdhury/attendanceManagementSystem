@@ -6,9 +6,11 @@ const Login = (params) => {
     
     const loginHandler = () =>  window.open(`${axios.defaults.baseURL}/auth/google`, "_self")    
     return(
-        <Button className ="btn btn-light btn-lg" onClick = {loginHandler}> 
-            <FcGoogle />  Login with Google
-        </Button>
+        <div className= "loginComponent">
+            <Button className ="btn btn-light btn-lg" onClick = {loginHandler}> 
+                <FcGoogle />  Login with Google
+            </Button>
+        </div>
 
     )
 }

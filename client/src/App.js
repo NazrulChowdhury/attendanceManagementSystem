@@ -6,36 +6,50 @@ import { useEffect, useState } from 'react'
 import Login from './components/authComponents/Login'
 import SideNavigation from './components/sharedComponents/SideNavigation'
 import PageContainer from './components/sharedComponents/PageContainer'
+import { useQuery } from 'react-query'
+import { Spin } from 'antd'
 
 axios.defaults.baseURL = 'http://localhost:8080'
 
 function App() {
-  const {isLoggedIn, setIsLoggedIn} = useGlobalContext()
-  const [broken, setBroken] = useState(false)
-
-  useEffect(() => {
-    axios.get('/api/auth/getUserStatus',{withCredentials : true})
-    .then(response =>  setIsLoggedIn(response.data))
-    .catch(err => setBroken(true))
-  },[])
+  const {isLoggedIn, setIsLoggedIn} = useGlobalContext(false)
+  const [initialRender, setInitialRender] = useState(true)
   
-  return (
-      <div className = "appContainer">
-        {isLoggedIn && 
+  const getUserStatus = async() => {
+    return await axios('/api/auth/getUserStatus',{withCredentials : true})
+  }
+  const {loading, refetch} = useQuery('getUserStatus', getUserStatus, {
+    enabled : false,
+    onSuccess : (data) => {
+      setIsLoggedIn(data.data)
+      setInitialRender(false)
+    }
+  })
+  useEffect(() => refetch(),[])
+  
+  return ( 
+    <div className = "appContainer">
+      {isLoggedIn && 
         <>
           <div>
             <SideNavigation />
           </div>
-          <div className ='pageContainer'>
+          <div className ='pageContainer'> 
             <PageContainer />
-          </div> 
-        </>  }
-        {!isLoggedIn && 
+          </div>  
+        </>  
+      }
+      {!isLoggedIn && !initialRender && 
         <div className= "loginComponent">
           <Login />
-        </div>}          
-         {/* {broken component goes here} */}
-     </div>    
+        </div>
+      }
+      { initialRender || loading &&
+        <div className="fullPageDiv flexRowCenter">
+          <Spin size="large" />
+        </div>
+      }          
+    </div>    
   )
 }
 

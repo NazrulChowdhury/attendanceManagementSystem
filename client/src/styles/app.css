@@ -98,6 +98,6 @@ body, html {
   position: absolute; 
   top : 0 ; 
   left : 50; 
-  background: #6C09E2;
+  /* background: #6C09E2; */
   opacity: 0.5;
 }
