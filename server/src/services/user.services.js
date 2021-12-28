@@ -29,10 +29,16 @@ const clearInvite = async(email) =>{
 const updateUserPicture = async(id, picture) => {
     return await User.updateOne({_id : id}, {picture})
 }
-
+const getUser = async(id) => {
+    return await User.findOne({_id : id})
+}
 
 module.exports = {
-    getSocialUserById,createSocialUser, clearInvite, updateUserPicture
+    getSocialUserById,
+    createSocialUser, 
+    clearInvite, 
+    updateUserPicture,
+    getUser
 }
 
 

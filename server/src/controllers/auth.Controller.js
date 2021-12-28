@@ -1,3 +1,5 @@
+const { getUser } = require('../services/user.services')
+
 require('dotenv').config()
 
 const logout = (req, res) => {
@@ -7,4 +9,32 @@ const logout = (req, res) => {
     res.send(false)
   })
 }
-module.exports = {logout}
+const getUserStatus = async(req, res, next) => {
+  const id = req.user 
+  const status = {
+    isAdmin : false,
+    isLoggedIn : false
+  }
+  if(!id) {
+    res.send(status)
+    return
+  }
+  try{ 
+    const user = await getUser(id)
+    if(!user) {
+      next('error') 
+      return
+    }
+    const admin = user.role === 'admin' ? true : false
+    res.send({
+      isAdmin : admin,
+      isLoggedIn : true
+     })
+  } catch(error){
+    next(error)
+  }
+}
+module.exports = {
+  logout,
+  getUserStatus
+}
