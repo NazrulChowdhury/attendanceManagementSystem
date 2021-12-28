@@ -2,8 +2,8 @@ import { TimePicker } from "antd"
 import axios from "axios"
 import moment, { duration } from "moment"
 import { useEffect, useState } from "react"
-import { Modal, Button, Form } from "react-bootstrap"
-import { Alert, Spin,message } from 'antd';
+import { Modal, Form } from "react-bootstrap"
+import { Alert, Spin, message, Button } from 'antd'
 import { useMutation, useQueryClient } from "react-query"
 
 const AddSession = ({setShowModal, setShowCalendar, sessionDate}) => {
@@ -54,42 +54,47 @@ const AddSession = ({setShowModal, setShowCalendar, sessionDate}) => {
     
     
     return (
-        <div style = {{ height: '100%' , width: '100%'}}>  
-            <Modal.Dialog> 
+        <div className="fullPageDiv">  
+            <Modal.Dialog style = {{"color" : "white"}}> 
                 <Modal.Header style = {{"backgroundColor" : "#6C09E2"}}>
-                <Modal.Title style = {{"color" : "white"}}>Add new Session</Modal.Title>
+                    <Modal.Title >
+                        Add new Session
+                    </Modal.Title>
                 </Modal.Header>
 
-                <Modal.Body>
-                <Form onSubmit ={(e) => sessionLength? mutateAsync(e) : e.preventDefault()}>
-                    <Form.Group>
-                        <Form.Label>Start Time</Form.Label>
-                        <TimePicker 
-                        format={'HH:mm'}
-                            value={startTime}
-                            onChange={time => setStartTime(time)}
-                        />
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Label>End Time  </Form.Label>
-                        <TimePicker 
-                        format={'HH:mm'}
-                            value={endTime}
-                            onChange={time => setEndTime(time)}
-                        />
-                    </Form.Group>                    
+                <Modal.Body style = {{"backgroundColor" : "#6C09E2"}}>
+                    <Form onSubmit ={(e) => sessionLength? mutateAsync(e) : e.preventDefault()}>
+                        <Form.Group>
+                            <Form.Label>Start Time</Form.Label> &nbsp;
+                            <TimePicker 
+                            format={'HH:mm'}
+                                value={startTime}
+                                onChange={time => setStartTime(time)}
+                            />
+                        </Form.Group> <br />
+                        <Form.Group> &nbsp;
+                            <Form.Label>End Time  </Form.Label> &nbsp; 
+                            <TimePicker 
+                            format={'HH:mm'}
+                                value={endTime}
+                                onChange={time => setEndTime(time)}
+                            />
+                        </Form.Group> <br />                
 
-                    <Button variant="primary" type="submit">
-                        {isLoading && <Spin />}
-                        Submit
-                    </Button>
-                </Form>
+                        <Button className="customButtonBlue" type="submit">
+                            {isLoading && <Spin />}
+                            Submit
+                        </Button>
+                    </Form>
                 </Modal.Body>
 
                 <Modal.Footer style = {{"backgroundColor" : "#6C09E2"}}>
-                <Button variant="danger"
-                onClick = {() => {setShowModal(false); setShowCalendar(true)}}
-                >Cancel</Button>             
+                    <Button 
+                        className="customButtonRed"
+                        onClick = {() => {setShowModal(false); setShowCalendar(true)}}
+                    >
+                        Cancel
+                    </Button>             
                 </Modal.Footer>
             </Modal.Dialog> 
 

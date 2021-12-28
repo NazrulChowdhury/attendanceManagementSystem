@@ -7,12 +7,13 @@ import Login from './components/authComponents/Login'
 import SideNavigation from './components/sharedComponents/SideNavigation'
 import PageContainer from './components/sharedComponents/PageContainer'
 import { useQuery } from 'react-query'
-import { Spin } from 'antd'
+import { message, Spin } from 'antd'
 
 axios.defaults.baseURL = 'http://localhost:8080'
 
 function App() {
-  const {isLoggedIn, setIsLoggedIn} = useGlobalContext(false)
+  const {status, setStatus} = useGlobalContext(false)
+  const {isLoggedIn, isAdmin} = status
   const [initialRender, setInitialRender] = useState(true)
   
   const getUserStatus = async() => {
@@ -21,12 +22,17 @@ function App() {
   const {loading, refetch} = useQuery('getUserStatus', getUserStatus, {
     enabled : false,
     onSuccess : (data) => {
-      setIsLoggedIn(data.data)
+      setStatus({
+        isLoggedIn : data.data.isLoggedIn,
+        isAdmin : data.data.isAdmin
+      })
       setInitialRender(false)
-    }
+    },
+    onError: (error) => message.error(`ERROR! ${error.message}`)
   })
   useEffect(() => refetch(),[])
   
+  console.log('isLoggedIn', isLoggedIn)
   return ( 
     <div className = "appContainer">
       {isLoggedIn && 

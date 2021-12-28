@@ -29,7 +29,7 @@ const TodaysSessions = () => {
     useEffect(() => refetchSessions(),[])  
 
     return(
-        <div className = 'sessionHeader flexRowCenter '> 
+        <div className = 'sessionHeader flexRowCenter '>  
            <div className = 'flexColumnCenter '>
                <div>
                    <h5> {today} </h5>
@@ -38,7 +38,11 @@ const TodaysSessions = () => {
                     <h3>Todays Sessions</h3> <br />
                     {isLoading &&  <Spin size="large" />}
                 </div>
-                 {sessions.length === 0 && <div style = {{ color: '#05E9EE'}}> No Session Today...</div>}
+                {sessions.length === 0 && !isLoading &&
+                    <div style = {{ color: '#05E9EE'}}> 
+                        No Session Today...
+                    </div>
+                }
                 <div> 
                     {sessions.length !== 0 && sessions.map(session => { 
                         return(
