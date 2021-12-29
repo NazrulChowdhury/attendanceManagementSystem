@@ -27,12 +27,11 @@ function App() {
         isAdmin : data.data.isAdmin
       })
       setInitialRender(false)
-    },
-    onError: (error) => message.error(`ERROR! ${error.message}`)
+     } ,
+     onError: (error) => message.error(`ERROR! ${error.message}`)
   })
   useEffect(() => refetch(),[])
-  
-  console.log('isLoggedIn', isLoggedIn)
+
   return ( 
     <div className = "appContainer">
       {isLoggedIn && 

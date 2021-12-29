@@ -3,7 +3,7 @@ import { ProSidebar, Menu, MenuItem, SidebarHeader, SubMenu} from 'react-pro-sid
 import { AiFillDashboard, AiOutlineLogout } from "react-icons/ai"
 import { BsCalendar3 } from "react-icons/bs"
 import { MdAdminPanelSettings } from "react-icons/md"
-import MyAvatar from "./MyAvatar"
+import Profile from "./Profile"
 
 const SideNavigation = () => { 
     const history = useHistory()
@@ -13,7 +13,7 @@ const SideNavigation = () => {
         width = "200px"
         >
         <SidebarHeader> 
-           <MyAvatar />
+           <Profile />
         </SidebarHeader>
             <Menu >
                 <MenuItem 
