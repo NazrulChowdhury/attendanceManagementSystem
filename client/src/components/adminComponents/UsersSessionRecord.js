@@ -34,7 +34,8 @@ const UsersSessionRecord = () => {
     }
     const {loading, refetch} = useQuery('getAllUsers', getUsers,{
         enabled: false,
-        onSuccess : (data) => setUsers(data.data) 
+        onSuccess : (data) => setUsers(data.data),
+        onError : (error)=> message.error(`ERROR!! ${error.response.data}`)
     })
     const {isLoading, mutateAsync} = useMutation(getMonthlySessions,{
         onSuccess : (data) => setSessions(data.data),

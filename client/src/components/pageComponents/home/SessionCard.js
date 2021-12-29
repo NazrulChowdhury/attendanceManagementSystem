@@ -14,6 +14,7 @@ const SessionCard = ({session, id}) => {
         return await axios({
           method : 'delete',
           url : '/api/session/deleteSession',
+          withCredentials : true, 
           data : {id}
         })
       }

@@ -1,10 +1,11 @@
 import { TimePicker } from "antd"
 import axios from "axios"
-import moment, { duration } from "moment"
+import moment from "moment"
 import { useEffect, useState } from "react"
 import { Modal, Form } from "react-bootstrap"
-import { Alert, Spin, message, Button } from 'antd'
+import { Alert, Spin, message,  } from 'antd'
 import { useMutation, useQueryClient } from "react-query"
+import Button from 'react-bootstrap/Button'
 
 const AddSession = ({setShowModal, setShowCalendar, sessionDate}) => {
     const [startTime, setStartTime] = useState(null)

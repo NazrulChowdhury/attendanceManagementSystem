@@ -4,8 +4,11 @@ import { AiFillDashboard, AiOutlineLogout } from "react-icons/ai"
 import { BsCalendar3 } from "react-icons/bs"
 import { MdAdminPanelSettings } from "react-icons/md"
 import Profile from "./Profile"
+import { useGlobalContext } from "../../context/context"
 
 const SideNavigation = () => { 
+    const {status} = useGlobalContext()
+    const {isAdmin} = status
     const history = useHistory()
     return(
         <ProSidebar 
@@ -28,23 +31,27 @@ const SideNavigation = () => {
                 >
                     Records
                 </MenuItem> 
-                    <SubMenu title="Admin" icon={<MdAdminPanelSettings size={50} />}
-                    >
-                        <MenuItem
-                        onClick = {() => history.push('/addUser') }
-                        >  
-                        Add User
-                        </MenuItem>
+                    {isAdmin && 
+                        <SubMenu 
+                        title="Admin" 
+                        icon={<MdAdminPanelSettings size={50} />} 
+                        >
+                            <MenuItem
+                            onClick = {() => history.push('/addUser') }
+                            >  
+                            Add User
+                            </MenuItem>
 
-                        <MenuItem
-                        onClick = {() => history.push('/userRecords') }
-                        >View user records
-                        </MenuItem>
-                        <MenuItem
-                        onClick = {() => history.push('/manageUsers') }
-                        >Manage users
-                        </MenuItem>
-                    </SubMenu>
+                            <MenuItem
+                            onClick = {() => history.push('/userRecords') }
+                            >View user records
+                            </MenuItem>
+                            <MenuItem
+                            onClick = {() => history.push('/manageUsers') }
+                            >Manage users
+                            </MenuItem>
+                        </SubMenu>
+                    }
                 <MenuItem 
                 icon = {<AiOutlineLogout size={50} />}
                 onClick = {() => history.push('/logout')}

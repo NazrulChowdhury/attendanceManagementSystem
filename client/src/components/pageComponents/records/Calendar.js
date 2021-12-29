@@ -52,6 +52,7 @@ const Calendar = ()=> {
     return await axios({
       method : 'delete',
       url : '/api/session/deleteSession',
+      withCredentials : true,
       data : {id}
     })
   }
