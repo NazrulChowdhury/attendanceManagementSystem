@@ -1,7 +1,13 @@
 const passport = require('passport')
 const GoogleStrategy = require('passport-google-oauth20')
 const AuthError = require('../helper/auth.error')
-const {getSocialUserById, createSocialUser, inviteEmailExist, clearInvite, updateUserPicture} = require('../services/user.services')
+const {
+  getSocialUserById, 
+  createSocialUser, 
+  clearInvite, 
+  updateUserPicture
+} = require('../services/user.services')
+const {inviteEmailExist} = require('../services/admin.services')
 require('dotenv').config()
 
 passport.serializeUser((user, done)=> done(null, user.id))
@@ -27,7 +33,7 @@ passport.use(new GoogleStrategy({
       }
       const isInvited = await inviteEmailExist(profile._json.email)
       if(!isInvited){
-        done(AuthError.badRequest(409,'user need to be added first!'))
+       done(null, null)
         return
       }
       const {role} = isInvited
