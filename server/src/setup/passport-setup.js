@@ -1,6 +1,5 @@
 const passport = require('passport')
 const GoogleStrategy = require('passport-google-oauth20')
-const AuthError = require('../helper/auth.error')
 const {
   getSocialUserById, 
   createSocialUser, 
