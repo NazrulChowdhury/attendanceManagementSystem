@@ -8,13 +8,15 @@ import SideNavigation from './components/sharedComponents/SideNavigation'
 import PageContainer from './components/sharedComponents/PageContainer'
 import { useQuery } from 'react-query'
 import { message, Spin } from 'antd'
-
+import { isInvited } from './helper'
+import NotInvited from './components/authComponents/NotInvited'
 axios.defaults.baseURL = 'http://localhost:8080'
 
 function App() {
-  const {status, setStatus} = useGlobalContext(false)
-  const {isLoggedIn, isAdmin} = status
+  const {status, setStatus} = useGlobalContext(false) 
+  const {isLoggedIn} = status
   const [initialRender, setInitialRender] = useState(true)
+  const [invited, setInvited] = useState(true)
   
   const getUserStatus = async() => {
     return await axios('/api/auth/getUserStatus',{withCredentials : true})
@@ -30,7 +32,11 @@ function App() {
      } ,
      onError: (error) => message.error(`ERROR! ${error.message}`)
   })
-  useEffect(() => refetch(),[])
+
+  useEffect(() => {
+    refetch()
+    const inviteStatus = isInvited() ? setInvited(false) : null
+  },[])
 
   return ( 
     <div className = "appContainer">
@@ -44,7 +50,7 @@ function App() {
           </div>  
         </>  
       }
-      {!isLoggedIn && !initialRender && 
+      {!isLoggedIn && !initialRender && invited &&
         <div className= "loginComponent">
           <Login />
         </div>
@@ -53,7 +59,13 @@ function App() {
         <div className="fullPageDiv flexRowCenter">
           <Spin size="large" />
         </div>
-      }          
+      } 
+        {!invited && 
+        <div className='fullPageDiv'>
+          <NotInvited />
+        </div>
+        }
+ 
     </div>    
   )
 }

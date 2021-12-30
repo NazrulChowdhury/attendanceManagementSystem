@@ -15,7 +15,6 @@ const GlobalContextProvider = (props) => {
    const [refetchSessions, setRefetchSession] = useState(false)
    const [refetchHeatMap, setRefetchHeatmap] = useState(false)
 
-
     const value = { 
         status, setStatus,
         timeSheetColumn, setTimeSheetColumn,

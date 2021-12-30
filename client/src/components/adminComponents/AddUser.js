@@ -14,6 +14,7 @@ const AddUser =() => {
       return await axios({
       method : 'post',
       url : 'api/admin/addUser',
+      withCredentials : true,
       data : {email, role}
     })}
 
