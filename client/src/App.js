@@ -61,9 +61,7 @@ function App() {
         </div>
       } 
         {!invited && 
-        <div className='fullPageDiv'>
           <NotInvited />
-        </div>
         }
  
     </div>    
