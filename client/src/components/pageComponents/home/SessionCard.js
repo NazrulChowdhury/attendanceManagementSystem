@@ -33,7 +33,11 @@ const SessionCard = ({session, id}) => {
             className="customCardBody"
             onClick = {() => setShowDeleteButton(!showDeleteButton) }
             >
-                <Card.Title>Duration {session.sessionLength} hh:mm</Card.Title>
+                <Card.Title>Duration {session.sessionLength} &nbsp;
+                    <span style={{fontSize: '15px'}}>
+                     hh:mm
+                    </span>
+                </Card.Title>
                 <Card.Text>
                     Start Time: {session.startTime}  <br />
                     Stop Time: {session.endTime} 
