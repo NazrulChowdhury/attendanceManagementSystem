@@ -7,8 +7,6 @@ const session = require('./redis.session')
 const passport = require('./passport.middleware')
 
 middleware.use(cors({
-    origin: "http://localhost:3000", 
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true // allow session cookie from browser to pass through
   }))
 middleware.use(express.json())

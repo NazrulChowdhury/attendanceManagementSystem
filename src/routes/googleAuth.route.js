@@ -9,8 +9,8 @@ router.get(
 router.get(
     '/google/redirect',
     passport.authenticate('google',{ 
-        successRedirect: process.env.CLIENT_BASE_URL,
-        failureRedirect: `${process.env.CLIENT_BASE_URL}?invited=notFound`
+        successRedirect: '/',
+        failureRedirect: `/?invited=notFound`
     })
 )
 

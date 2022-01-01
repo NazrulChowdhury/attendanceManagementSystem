@@ -10,7 +10,7 @@ import { useQuery } from 'react-query'
 import { message, Spin } from 'antd'
 import { isInvited } from './helper'
 import NotInvited from './components/authComponents/NotInvited'
-axios.defaults.baseURL = 'http://localhost:8080'
+// axios.defaults.baseURL = 'http://localhost:8080'
 
 function App() {
   const {status, setStatus} = useGlobalContext(false) 

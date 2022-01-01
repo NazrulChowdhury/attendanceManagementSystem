@@ -3,6 +3,7 @@ const app = express()
 const middleware = require('./src/middleware')
 const router = require('./src/routes')
 require('dotenv').config()
+const path = require('path')
 const port = process.env.PORT || 8080
 const db = require('./src/db/mongoose.connection')
 const googleAuth = require('./src/routes/googleAuth.route')
@@ -15,11 +16,14 @@ app.use(middleware)
 app.use('/auth',googleAuth)
 app.use('/api',router)
 
-//connect db
+//connect db 
 db()
 
 if(process.env.NODE_ENV === 'production'){
-    app.use(express.static('./client/build'))
+    app.use(express.static('client/build'))
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname,'client', 'build', 'index.html'))
+    })
 }
 
 app.listen(port, error => error? console.log('server failed to start'): 
