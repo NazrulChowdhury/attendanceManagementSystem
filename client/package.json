@@ -1,6 +1,6 @@
 {
   "name": "client",
-  "homepage": "http://localhost:5000/",
+  "homepage": "https://enigmatic-river-04425.herokuapp.com/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
