@@ -10,7 +10,7 @@ middleware.use(cors({
     credentials: true // allow session cookie from browser to pass through
   }))
 middleware.use(express.json())
-middleware.use(helmet())
+middleware.use(helmet({ contentSecurityPolicy: false}))
 middleware.use(morgan('common'))
 middleware.use(express.urlencoded({extended:false}))
 //session and cookie
@@ -18,3 +18,4 @@ middleware.use(session)
 middleware.use(passport)
 
 module.exports = middleware
+
