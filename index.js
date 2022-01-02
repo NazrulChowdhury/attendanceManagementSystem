@@ -8,8 +8,9 @@ const port = process.env.PORT || 8080
 const db = require('./src/db/mongoose.connection')
 const googleAuth = require('./src/routes/googleAuth.route')
 
-// if run behind a proxy
+// enabled when running behind a proxy
 app.enable('trust proxy')
+
 //middleware 
 app.use(middleware)
 
