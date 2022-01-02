@@ -11,7 +11,7 @@ const logout = (req, res) => {
 }
 const getUserStatus = async(req, res, next) => {
   const id = req.user 
-  console.log('id in userStatus', id)
+  console.log('req object', req)
   const status = {
     isAdmin : false,
     isLoggedIn : false
