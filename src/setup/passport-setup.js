@@ -23,6 +23,7 @@ passport.use(new GoogleStrategy({
   async(request, accessToken, refreshToken, profile, done)=>{
     try{
       const existingUser = await getSocialUserById('google',profile.id)
+      console.log('existing user ---', existingUser)
       if(existingUser){
         const {id, picture} = existingUser
         if(picture !== profile._json.picture)  {
