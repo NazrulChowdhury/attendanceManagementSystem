@@ -1,7 +1,6 @@
-import { Table, Button,Spin } from "antd"
-import { useState } from "react"
+import { Table, Button,Spin, message } from "antd"
+import { useEffect, useState } from "react"
 import { useQuery } from "react-query"
-import { getUsers } from "../../hooks"
 import UpdateUser from "./UpdateUser"
 
 const UserList = (params) => { 
@@ -47,15 +46,19 @@ const UserList = (params) => {
           })
         })
       } 
-  
+    const getUsers = async() => {
+      return await axios('/api/admin/getUsers',{withCredentials : true}) 
+    } 
     const {loading} = useQuery('getUsers', getUsers,{ 
-      onSuccess : (data) => setUsers(data.data)
+      onSuccess : (data) => setUsers(data.data),
+      onError : (error) => message.error(`ERROR!!! ${error.message}`)
     })
     const editUserInfo = (id) =>  {
       setSelectedUser(users.find(user => id == user._id))
       setShowModal(true)
     }
-
+    
+    // useEffect(() => {},[])
       return ( 
         <div className="flexRowCenter" style={{height: '95%', width: '100%', marginTop: '10px' }}>
           {loading || !data.length  && <div> <Spin size="large" /> </div>}

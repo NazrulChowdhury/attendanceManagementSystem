@@ -9,7 +9,7 @@ const db = require('./src/db/mongoose.connection')
 const googleAuth = require('./src/routes/googleAuth.route')
 
 // enabled when running behind a proxy
-app.enable('trust proxy')
+ app.enable('trust proxy')
 
 //middleware 
 app.use(middleware)
@@ -26,7 +26,7 @@ if(process.env.NODE_ENV === 'production'){
     app.get('*', (req, res) => {
         res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
     })
-}
+} 
 
 app.listen(port, error => error? console.log('server failed to start'): 
     console.log(`server is listening on port: ${port}`)
