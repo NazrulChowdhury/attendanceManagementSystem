@@ -21,9 +21,10 @@ const addUser = async(req, res, next) => {
 
 }
 const getUsers = async(req, res, next) => {
+    const herokuHack = req.body
     try{
         const users = await adminService.getAllUsers()
-        !users ? next('error') : res.send('users')
+        !users ? next('error') : res.send(users)
         next()
     } catch(error){
         next (error)
