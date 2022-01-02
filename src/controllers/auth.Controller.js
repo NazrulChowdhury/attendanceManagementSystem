@@ -11,6 +11,7 @@ const logout = (req, res) => {
 }
 const getUserStatus = async(req, res, next) => {
   const id = req.user 
+  console.log('req.user----->>>>', id)
   console.log('req session......----->>>', req.session)
   const status = {
     isAdmin : false,
