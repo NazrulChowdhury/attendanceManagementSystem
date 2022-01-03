@@ -24,7 +24,6 @@ const getUsers = async(req, res, next) => {
     try{
         const users = await adminService.getAllUsers()
         !users ? next('error') : res.send(users)
-        next()
     } catch(error){
         next (error)
     }
