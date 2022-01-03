@@ -17,7 +17,6 @@ const getSessions = async(req, res, next) => {
         const dateTill = getTomorrow(req.params.dateTill)
         const response = await sessionService.getUserSessions(dateFrom, dateTill, req.user)
         res.send(response)
-        next()
     } catch(err){
         next(err)
     }
