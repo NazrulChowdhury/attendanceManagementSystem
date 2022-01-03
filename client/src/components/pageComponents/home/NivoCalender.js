@@ -10,6 +10,8 @@ const NivoCalender = () => {
     const dateFrom = +new Date(new Date().getFullYear(), 0, 1)
     const dateTill = +new Date(new Date().getFullYear(), 11, 31)
     const { setRefetchHeatmap } = useGlobalContext()
+    const yearFrom = `${new Date().getFullYear()}-01-01`
+    const yearTo = `${new Date().getFullYear()}-12-31`
 
     const getHeatMap = async() => {
         return await axios.get(`/api/session/getSessionHeatMap/${dateFrom}/${dateTill}`,{withCredentials: true})
@@ -27,8 +29,10 @@ const NivoCalender = () => {
     "borderRadius": "10px"
     }
 
-    useEffect(() => setRefetchHeatmap(()=>refetchHeatMap),[]) 
-    useEffect(() => refetchHeatMap(),[])
+    useEffect(() => {
+        setRefetchHeatmap(()=>refetchHeatMap)
+        refetchHeatMap()
+    },[]) 
     
     return( 
         <>
@@ -36,8 +40,8 @@ const NivoCalender = () => {
                 <ResponsiveCalendar
                     data={heatMapData} 
                     theme = {theme}
-                    from="2021-01-01"
-                    to="2021-12-31"
+                     from={yearFrom}
+                     to={yearTo}
                     emptyColor="#555354"
                     colors={[ '#22D1D5','#39BBBE','#49A9AB','#05E9EE']}
                     margin={{ top: 40, right: 40, bottom: 40, left: 40 }}
@@ -59,7 +63,7 @@ const NivoCalender = () => {
                     ]}
                 /> 
             }
-            {!heatMapData && 
+            {isLoading && 
                 <div className="fullPageDiv flexRowCenter" style={{ width: '500px'}}>
                     <Spin size="large" />
                 </div>
