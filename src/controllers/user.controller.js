@@ -9,7 +9,6 @@ const getProfile = async(req, res, next) => {
             name : user.firstName,
             image : user.picture
         })
-        next()
     } catch (error){
         next('error')
     }

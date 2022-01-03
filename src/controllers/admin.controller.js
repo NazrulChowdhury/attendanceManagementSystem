@@ -14,7 +14,6 @@ const addUser = async(req, res, next) => {
         }
         const inviteEmail = await adminService.createInviteEmail(email, role)
         inviteEmail ? res.send('done!') : next(ApiError.internal())
-        next()
     } catch(error){
         next(error)
     }
@@ -33,7 +32,6 @@ const updateUser = async(req, res, next)=>{
     try{
         const status = await adminService.updateUserRole(id, role)
         status ? res.send('Success!') : next('error')
-        next()
     }catch(error){
         next(error)
     }
@@ -49,7 +47,6 @@ const getSelectedSessions = async(req, res,next)=>{
         const sessionTotal = await getSessionTotal(sessions)
         !sessionTotal.length ? next(ApiError.badRequest(401,'This user has no session for this period!')) :
         res.send(sessionTotal)
-        next()
     }catch(error){
         next(error)
     }
@@ -59,7 +56,6 @@ const getUserFullName = async(req, res, next)=>{
     try{
         const userFullName = await adminService.getUserFullName(id)
         !userFullName ? next(ApiError.badRequest(409, 'user not found!')) : res.send(userFullName)
-        next()
     }catch(error){
         next(error)
     }
@@ -70,7 +66,6 @@ const removeUser = async(req, res, next) => {
         await adminService.removeUser(id)
         await adminService.removeAllSessions(id)
         res.send('Success!')
-        next()
     } catch(error){
         next(error)
     }
