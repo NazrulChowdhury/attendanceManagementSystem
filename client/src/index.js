@@ -1,4 +1,5 @@
 import React from 'react';
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-pro-sidebar/dist/css/styles.css';
 import ReactDOM from 'react-dom';
@@ -20,3 +21,4 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 )
+serviceWorkerRegistration.register()
